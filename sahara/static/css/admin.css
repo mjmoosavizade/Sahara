@@ -1,0 +1,13 @@
+@font-face {
+    font-family: Dubai;
+    src: url(../webfonts/Dubai-Medium.otf);
+}
+
+* {
+    font-family: Dubai;
+}
+
+#header {
+    height: 52px;
+    background-color: #558d8d;
+}

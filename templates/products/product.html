@@ -1,0 +1,94 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<!-- Main -->
+<main>
+    <!-- Product Detail -->
+    <div class="pdetail">
+        <div class="pdetail__informations">
+            <div class="pdetail__informations-box">
+                <div class="d-flex flex-column w-100">
+                    <div class="pdetail__informations-title">Title Product</div>
+                    <div class="pdetail__informations-description">Title Description</div>
+                </div>
+                <!-- an ==> Alternative name -->
+                <div class="pdetail__informations__an">
+                    <div class="pdetail__informations__an-title">Alternative Title</div>
+                    <div class="pdetail__informations__an-description">Alternative Description</div>
+                    <hr>
+                    <div class="pdetail__informations__an-description">Alternative Description</div>
+                    <hr>
+                </div>
+                <!-- oos ==> Original Or Stock -->
+                <div class="pdetail__informations__oos original">
+                    <div class="pdetail__informations__oos-box">
+                        <a href="#" class="pdetail__informations__oos-original">original</a>
+                        <a href="#" class="pdetail__informations__oos-stock">stock</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pdetail__controller">
+            <div class="pdetail__controller-box">
+                <!-- bc ==> Bread Crumb -->
+                <div class="pdetail__controller__bc">
+                    <a href="#" class="pdetail__controller__bc-item">Category</a>
+                    <a href="#" class="pdetail__controller__bc-item">Simens</a>
+                    <a href="#" class="pdetail__controller__bc-item">sinamics</a>
+                    <a href="#" class="pdetail__controller__bc-item">7ed0ok-esaoi</a>
+                </div>
+                <div class="pdetail__controller-img">
+                    <img src="./assets/img/defa134134ult-removebg-preview.png" alt="**">
+                </div>
+                <div class="pdetail__controller__btns">
+                    <div class="d-flex">
+                        <div class="w-50">
+                            <button class="btn-red-fill">افزودن به کالای پروژه</button>
+                        </div>
+                        <div class="w-50">
+                            <button class="btn-red-border">کالا های انتخابی شما (۰)</button>
+                        </div>
+                    </div>
+                    <div class="w-100">
+                        <button class="btn-green-fill">دانلود فایل مشخصات پروژه</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Guarantees -->
+    <div class="guarantees">
+        <div class="guarantees-box">
+            <hr>
+            <div class="guarantees__list">
+                <div class="d-flex flex-grow-1">
+                    <div class="guarantees__list__item">
+                        <div class="guarantees__list__item-img">
+                            <img src="{% static 'img/customer-review.png' %}" alt="">
+                        </div>
+                        <div class="guarantees__list__item-text">بیش از ۹۰٪ رضایت</div>
+                    </div>
+                    <div class="guarantees__list__item">
+                        <div class="guarantees__list__item-img">
+                            <img src="{% static 'img/package.png' %}" alt="">
+                        </div>
+                        <div class="guarantees__list__item-text">ضمانت اصالت کالا</div>
+                    </div>
+                </div>
+                <div class="d-flex flex-grow-1">
+                    <div class="guarantees__list__item">
+                        <div class="guarantees__list__item-img">
+                            <img src="{% static 'img/truck.png' %}" alt="">
+                        </div>
+                        <div class="guarantees__list__item-text">ارسال به تمام نقاط کشور</div>
+                    </div>
+                    <div class="guarantees__list__item">
+                        <div class="guarantees__list__item-img">
+                            <img src="{% static 'img/best-seller.png' %}" alt="">
+                        </div>
+                        <div class="guarantees__list__item-text">تضمین بهترین قیمت</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.map.ir/web-sdk/1.4.2/css/mapp.min.css">
+    <link rel="stylesheet" href="https://cdn.map.ir/web-sdk/1.4.2/css/fa/style.css">
+    <title>صحارا</title>
+</head>
+
+<body>
+    <!-- Chooser Language, Phone Number, WebSite Address -->
+    <header>
+        <div class="chooser-lang">
+            <a href="" class="persian active">Persian</a>
+            <span>/</span>
+            <a href="" class="english">English</a>
+        </div>
+        <div class="phone-num">
+            <a href="tell:+981234567890">+98&nbsp;123&nbsp;456&nbsp;7890</a>
+            <span>&nbsp;&colon;&nbsp;شماره تماس</span>
+        </div>
+        <div class="website-address">
+            <a href="">www.saharasupply.com</a>
+        </div>
+    </header>
+    <nav>
+        <div class="nav__openner">
+            <i class='bx bx-menu'></i>
+            <span class="name">منو</span>
+        </div>
+        <div class="nav__items">
+            <div class="times">
+                <i class='bx bx-x'></i>
+            </div>
+            <div class="nav__item-box">
+                <a href="#" class="nav__item active">
+                    <span>صفحه اصلی</span>
+                </a>
+            </div>
+            <div class="nav__item-box">
+                <a href="#" class="nav__item">
+                    <span>برند و محصولات</span>
+                </a>
+            </div>
+            <div class="nav__item-box">
+                <a href="#" class="nav__item">
+                    <span>درباره ما</span>
+                </a>
+            </div>
+            <div class="nav__item-box">
+                <a href="#" class="nav__item">
+                    <span>بلاگ</span>
+                </a>
+            </div>
+            <div class="chooser-lang">
+                <a href="" class="persian active">Persian</a>
+                <span>/</span>
+                <a href="" class="english">English</a>
+            </div>
+        </div>
+        <div class="nav__cart">
+            <a href="#" class="nav__cart__item">
+                <span class="badge">2</span>
+                <i class='bx bx-cart-alt'></i>
+                <span class="name">سبد خرید</span>
+            </a>
+        </div>
+        <div class="nav__search">
+            <form action="">
+                <div class="nav__search-icon">
+                    <i class='bx bx-search'></i>
+                </div>
+                <div class="nav__search-input">
+                    <input type="text" placeholder="جستجوی محصول مورد نظر">
+                </div>
+            </form>
+            <div class="nav__search-border"></div>
+        </div>
+    </nav>
+    <main>{% block content %}{% endblock %} </main>
+    <footer>
+        <div class="footer__cp">
+            تمامی حقوق این سایت متعلق به شرکت
+            <span class="sucess">&nbsp;*****&nbsp;</span> میباشد و هرگونه کپی برداری از آن
+            <span class="danger">&nbsp;پیگرد قانونی&nbsp;</span> خواهد داشت
+        </div>
+        <div class="footer__item footer__item__list">
+            <div class="footer__item__list-title">دسترسی سریع</div>
+            <span class="footer__item__list-item">آدرس: تهران بلوار آفریقا خیابان ناهید غربی پلاک ۵۶ واحد ۵ طبقه اول</span>
+            <span class="footer__item__list-item">تلفن: ۲۶۲۱۹۸۴۴</span>
+            <span class="footer__item__list-item">فکس: ۲۶۲۱۹۸۴۵</span>
+        </div>
+        <div class="footer__item footer__item__list">
+            <div class="footer__item__list-title swap">دسترسی سریع</div>
+            <a href="#" class="footer__item__list-item swap">خانه</a>
+            <a href="#" class="footer__item__list-item swap">برند ها</a>
+            <a href="#" class="footer__item__list-item swap">محصولات</a>
+            <a href="#" class="footer__item__list-item swap">درباره ما</a>
+        </div>
+        <div class="footer__item footer__item__social">
+            <span class="footer__item__social-title">ما را در شبکه های اجتماعی دنبال کنید</span>
+            <div class="footer__item__social-icons">
+                <a href="" class="footer__item__social-icon">
+                    <i class="bx bxl-google-plus bx-tada-hover"></i>
+                </a>
+                <a href="" class="footer__item__social-icon">
+                    <i class="bx bxl-instagram bx-tada-hover"></i>
+                </a>
+                <a href="" class="footer__item__social-icon">
+                    <i class="bx bxl-linkedin bx-tada-hover"></i>
+                </a>
+                <a href="" class="footer__item__social-icon">
+                    <i class="bx bxl-whatsapp bx-tada-hover"></i>
+                </a>
+            </div>
+            <div class="footer__item__newsletters">
+                <a href="#" class="footer__item__newsletters-span">نظرات خود را با ما به اشتراک بگذارید</a>
+                <a href="#" class="footer__item__newsletters-title">عضویت در خبرنامه</a>
+                <div class="footer__item__newsletters-icon">
+                    <i class='bx bx-envelope bx-tada-hover'></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+<script src="{% static 'js/main.js' %}"></script>
+
+</html>
