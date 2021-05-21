@@ -4,6 +4,7 @@ from django.utils.text import slugify
 class Category(models.Model):
     parent = models.ForeignKey('self', related_name='children', on_delete=models.CASCADE, blank=True, null=True, verbose_name='والد')
     category_title = models.CharField(max_length=255, verbose_name='نام دسته بندی')
+    category_image = models.ImageField(upload_to= 'photos/category/%Y/%m/%d/', blank=True, verbose_name='تصویر دسته بندی')
     slug = models.SlugField(unique=True, editable=False)
 
     class Meta:
