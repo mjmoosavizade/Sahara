@@ -1,9 +1,12 @@
 from django.contrib import admin
-from .models import Product
+from .models import Product, Brand
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('id', 'product_name', 'category', 'price')
+    list_display = ('id', 'product_name', 'category', 'brand', 'price', )
+
+
 
 admin.site.register(Product, ProductAdmin)
+admin.site.register(Brand,)
 

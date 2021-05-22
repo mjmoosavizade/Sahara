@@ -6,6 +6,7 @@ class Category(models.Model):
     category_title = models.CharField(max_length=255, verbose_name='نام دسته بندی')
     category_image = models.ImageField(upload_to= 'photos/category/%Y/%m/%d/', blank=True, verbose_name='تصویر دسته بندی')
     slug = models.SlugField(unique=True, editable=False)
+    show_in_homepage = models.BooleanField(default=False, verbose_name='نمایش در لندینگ')
 
     class Meta:
         verbose_name = 'دسته بندی'

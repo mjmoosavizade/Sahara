@@ -2866,6 +2866,7 @@ main .cat__brands__list__item {
     -webkit-box-flex: 1;
     -ms-flex: 1 1 0px;
     flex: 1 1 0;
+    max-width: 250px;
 }
 
 main .cat__brands__list__item.active .cat__brands__list__item-box {
@@ -2880,6 +2881,7 @@ main .cat__brands__list__item-box {
     background-color: #ededed;
     border-radius: 10px;
     border: 3px solid #ededed;
+    max-width: 250px;
 }
 
 main .cat__brands__list__item-img {

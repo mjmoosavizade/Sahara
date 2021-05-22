@@ -6,22 +6,34 @@
         <div class="pdetail__informations">
             <div class="pdetail__informations-box">
                 <div class="d-flex flex-column w-100">
-                    <div class="pdetail__informations-title">Title Product</div>
-                    <div class="pdetail__informations-description">Title Description</div>
+                    <div class="pdetail__informations-title">{{ product.product_name }}</div>
+                    <div class="pdetail__informations-description">{{ product.description }}</div>
                 </div>
                 <!-- an ==> Alternative name -->
                 <div class="pdetail__informations__an">
                     <div class="pdetail__informations__an-title">Alternative Title</div>
-                    <div class="pdetail__informations__an-description">Alternative Description</div>
+                    <div class="pdetail__informations__an-description">
+                        {% if product.alternative_name_1 %}
+                        {{ product.alternative_name_1 }}
+                        {% else %}
+                         ...
+                        {% endif %}
+                    </div>
                     <hr>
-                    <div class="pdetail__informations__an-description">Alternative Description</div>
+                    <div class="pdetail__informations__an-description">
+                        {% if product.alternative_name_2 %}
+                        {{ product.alternative_name_2 }}
+                        {% else %}
+                         ...
+                        {% endif %}
+                    </div>
                     <hr>
                 </div>
                 <!-- oos ==> Original Or Stock -->
                 <div class="pdetail__informations__oos original">
                     <div class="pdetail__informations__oos-box">
-                        <a href="#" class="pdetail__informations__oos-original">original</a>
-                        <a href="#" class="pdetail__informations__oos-stock">stock</a>
+                        <a href="#" {% if product.type == 'Original' %}class="pdetail__informations__oos-original"{% else %} class="pdetail__informations__oos-stock" {% endif %}>original</a>
+                        <a href="#" {% if product.type == 'Stock' %}class="pdetail__informations__oos-original"{% else %} class="pdetail__informations__oos-stock" {% endif %}>stock</a>
                     </div>
                 </div>
             </div>
@@ -30,13 +42,15 @@
             <div class="pdetail__controller-box">
                 <!-- bc ==> Bread Crumb -->
                 <div class="pdetail__controller__bc">
-                    <a href="#" class="pdetail__controller__bc-item">Category</a>
-                    <a href="#" class="pdetail__controller__bc-item">Simens</a>
-                    <a href="#" class="pdetail__controller__bc-item">sinamics</a>
-                    <a href="#" class="pdetail__controller__bc-item">7ed0ok-esaoi</a>
+                    <a href="{% url 'categories' %}" class="pdetail__controller__bc-item">Category</a>
+                    <a href="#" class="pdetail__controller__bc-item">{{ product.brand }}</a>
+                    {% for category in product.all_categories %}
+                    <a href="#" class="pdetail__controller__bc-item">{{ category }}</a>
+                    {% endfor %}
+                    <a href="{% url 'product' product.slug %}" class="pdetail__controller__bc-item">{{ product.product_name }}</a>
                 </div>
                 <div class="pdetail__controller-img">
-                    <img src="./assets/img/defa134134ult-removebg-preview.png" alt="**">
+                    <img src="{{ product.product_photo.url }}" alt="**">
                 </div>
                 <div class="pdetail__controller__btns">
                     <div class="d-flex">
@@ -48,7 +62,9 @@
                         </div>
                     </div>
                     <div class="w-100">
-                        <button class="btn-green-fill">دانلود فایل مشخصات پروژه</button>
+                    {% if product.tech_spec %}
+                        <a href="{{ product.tech_spec.url }}" class="btn-green-fill">دانلود فایل مشخصات پروژه</a>
+                    {% endif %}
                     </div>
                 </div>
             </div>

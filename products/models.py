@@ -1,7 +1,24 @@
 from django.db import models
 from django.utils.text import slugify 
-from django.core.validators import MinValueValidator 
 from categories.models import Category
+from datetime import datetime
+
+class Brand(models.Model):
+    brand_name = models.CharField(max_length=255)
+    logo = models.ImageField(upload_to = 'photos/brands/%Y/%m/%d/', blank = True, )
+    show_in_homepage = models.BooleanField(default=False, verbose_name='نمایش در لندینگ')
+    slug = models.SlugField(unique=True, editable=False)
+    
+    class Meta:
+        verbose_name = 'برند'
+        verbose_name_plural = 'برند ها'
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.brand_name)
+        super(Brand, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.brand_name
 
 class Product(models.Model):
     class Type(models.TextChoices):
@@ -14,18 +31,31 @@ class Product(models.Model):
 
     category = models.ForeignKey(Category, on_delete = models.DO_NOTHING, verbose_name='دسته بندی')
     product_name = models.CharField(max_length=255, verbose_name='نام محصول')
+    description = models.TextField(verbose_name='توضیحات', null=False, blank=True)
     alternative_name_1 = models.CharField(max_length=255, blank=True, verbose_name='نام های دیگر')
     alternative_name_2 = models.CharField(max_length=255, blank=True, verbose_name='نام های دیگر')
     alternative_name_3 = models.CharField(max_length=255, blank=True, verbose_name='نام های دیگر')
     alternative_name_4 = models.CharField(max_length=255, blank=True, verbose_name='نام های دیگر')
+    brand = models.ForeignKey(Brand, on_delete=models.DO_NOTHING, verbose_name='برند', blank=True)
     currency = models.CharField(max_length=8, choices=Currency.choices, default=Currency.Rial, verbose_name='ارز')
-    price = models.IntegerField(null=True ,verbose_name='قیمت', validators=[MinValueValidator(1)])
+    price = models.IntegerField(null=True ,verbose_name='قیمت', blank=True, )
     slug = models.SlugField(unique=True, editable=False)
     product_photo = models.ImageField(upload_to= 'photos/product/%Y/%m/%d/', blank=True, verbose_name='تصویر محصول')
     type = models.CharField(max_length=8,choices= Type.choices, default=Type.Original, verbose_name='وضعیت')
+    date_added = models.DateField(default=datetime.now, editable=False, blank=True)
+    in_stock = models.BooleanField(default=True, verbose_name='موجودی')
     tech_spec = models.FileField(upload_to= 'spec/%Y/%m/%d/', blank=True, verbose_name='مشخصات محصول')
     show_in_homepage = models.BooleanField(default=False, verbose_name='نمایش در لندینگ')
 
+
+    @property
+    def all_categories(self):
+        categories = []
+        current_category = self.category
+        while current_category is not None:
+            categories.append(current_category)
+            current_category = current_category.parent
+        return categories
     
     class Meta:
         verbose_name = 'محصول'
