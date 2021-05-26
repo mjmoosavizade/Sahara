@@ -1,12 +1,12 @@
-{% extends 'base.html' %} {% load static %} {% block content %}
+{% extends 'base.html' %} {% load static %} {% load i18n %} {% block content %}
 
 <div class="main__intro">
     <div class="main__search">
         <div class="main__search-btn">
-            <button>همه دسته بندی ها</button>
+            <button id="actionSearch">{% trans 'همه دسته بندی ها' %}</button>
         </div>
         <div class="main__search-input">
-            <input type="text" placeholder="جستوجوی محصول یا برند مورد نظر">
+            <input type="text" id="actionSearchInput" placeholder="{% trans 'جستوجوی محصول یا برند مورد نظر' %}">
         </div>
     </div>
     <div class="main__logo">
@@ -16,283 +16,56 @@
 <main class="inner-container">
     <!-- Product List -->
     <div class="plist">
-        <div class="plist-title">دسته بندی محصولات زیمنس</div>
+        <div class="plist-title">{% trans 'دسته بندی محصولات' %} </div>
         <div class="plist-hr"></div>
         <div class="plist-box">
+        
+            {% for category in categories %}
             <div class="pcard">
                 <div class="pcard-box">
                     <div class="pcard-img">
-                        <img src="./assets/img/siemens_01_ovladacie_panely-removebg-preview.png" alt="**">
+                        {% if category.category_image %}
+                        <img src="{{ category.category_image.url }}" alt="**">
+                        {% endif %}
                     </div>
-                    <a href="#" class="pcard-link">مشاهده محصول</a>
+                    <a href="#" class="pcard-link">{% trans 'مشاهده محصولات' %}</a>
                 </div>
-                <div class="pcard-title dec c-red">Product Title</div>
+                <div class="pcard-title dec c-red">{{ category.category_title }}</div>
             </div>
-            <div class="pcard">
-                <div class="pcard-box">
-                    <div class="pcard-img">
-                        <img src="./assets/img/siemens_01_ovladacie_panely-removebg-preview.png" alt="**">
-                    </div>
-                    <a href="#" class="pcard-link">مشاهده محصول</a>
-                </div>
-                <div class="pcard-title dec c-red">Product Title</div>
-            </div>
-            <div class="pcard">
-                <div class="pcard-box">
-                    <div class="pcard-img">
-                        <img src="./assets/img/siemens_01_ovladacie_panely-removebg-preview.png" alt="**">
-                    </div>
-                    <a href="#" class="pcard-link">مشاهده محصول</a>
-                </div>
-                <div class="pcard-title dec c-red">Product Title</div>
-            </div>
-            <div class="pcard">
-                <div class="pcard-box">
-                    <div class="pcard-img">
-                        <img src="./assets/img/siemens_01_ovladacie_panely-removebg-preview.png" alt="**">
-                    </div>
-                    <a href="#" class="pcard-link">مشاهده محصول</a>
-                </div>
-                <div class="pcard-title dec c-red">Product Title</div>
-            </div>
-            <div class="pcard">
-                <div class="pcard-box">
-                    <div class="pcard-img">
-                        <img src="./assets/img/siemens_01_ovladacie_panely-removebg-preview.png" alt="**">
-                    </div>
-                    <a href="#" class="pcard-link">مشاهده محصول</a>
-                </div>
-                <div class="pcard-title dec c-red">Product Title</div>
-            </div>
-            <div class="pcard">
-                <div class="pcard-box">
-                    <div class="pcard-img">
-                        <img src="./assets/img/siemens_01_ovladacie_panely-removebg-preview.png" alt="**">
-                    </div>
-                    <a href="#" class="pcard-link">مشاهده محصول</a>
-                </div>
-                <div class="pcard-title dec c-red">Product Title</div>
-            </div>
-            <div class="pcard">
-                <div class="pcard-box">
-                    <div class="pcard-img">
-                        <img src="./assets/img/siemens_01_ovladacie_panely-removebg-preview.png" alt="**">
-                    </div>
-                    <a href="#" class="pcard-link">مشاهده محصول</a>
-                </div>
-                <div class="pcard-title dec c-red">Product Title</div>
-            </div>
-            <div class="pcard">
-                <div class="pcard-box">
-                    <div class="pcard-img">
-                        <img src="./assets/img/siemens_01_ovladacie_panely-removebg-preview.png" alt="**">
-                    </div>
-                    <a href="#" class="pcard-link">مشاهده محصول</a>
-                </div>
-                <div class="pcard-title dec c-red">Product Title</div>
-            </div>
-            <div class="pcard">
-                <div class="pcard-box">
-                    <div class="pcard-img">
-                        <img src="./assets/img/siemens_01_ovladacie_panely-removebg-preview.png" alt="**">
-                    </div>
-                    <a href="#" class="pcard-link">مشاهده محصول</a>
-                </div>
-                <div class="pcard-title dec c-red">Product Title</div>
-            </div>
-            <div class="pcard">
-                <div class="pcard-box">
-                    <div class="pcard-img">
-                        <img src="./assets/img/siemens_01_ovladacie_panely-removebg-preview.png" alt="**">
-                    </div>
-                    <a href="#" class="pcard-link">مشاهده محصول</a>
-                </div>
-                <div class="pcard-title dec c-red">Product Title</div>
-            </div>
-            <div class="pcard">
-                <div class="pcard-box">
-                    <div class="pcard-img">
-                        <img src="./assets/img/siemens_01_ovladacie_panely-removebg-preview.png" alt="**">
-                    </div>
-                    <a href="#" class="pcard-link">مشاهده محصول</a>
-                </div>
-                <div class="pcard-title dec c-red">Product Title</div>
-            </div>
-            <div class="pcard">
-                <div class="pcard-box">
-                    <div class="pcard-img">
-                        <img src="./assets/img/siemens_01_ovladacie_panely-removebg-preview.png" alt="**">
-                    </div>
-                    <a href="#" class="pcard-link">مشاهده محصول</a>
-                </div>
-                <div class="pcard-title dec c-red">Product Title</div>
-            </div>
-            <div class="pcard">
-                <div class="pcard-box">
-                    <div class="pcard-img">
-                        <img src="./assets/img/siemens_01_ovladacie_panely-removebg-preview.png" alt="**">
-                    </div>
-                    <a href="#" class="pcard-link">مشاهده محصول</a>
-                </div>
-                <div class="pcard-title dec c-red">Product Title</div>
-            </div>
-            <div class="pcard">
-                <div class="pcard-box">
-                    <div class="pcard-img">
-                        <img src="./assets/img/siemens_01_ovladacie_panely-removebg-preview.png" alt="**">
-                    </div>
-                    <a href="#" class="pcard-link">مشاهده محصول</a>
-                </div>
-                <div class="pcard-title dec c-red">Product Title</div>
-            </div>
-            <div class="pcard">
-                <div class="pcard-box">
-                    <div class="pcard-img">
-                        <img src="./assets/img/siemens_01_ovladacie_panely-removebg-preview.png" alt="**">
-                    </div>
-                    <a href="#" class="pcard-link">مشاهده محصول</a>
-                </div>
-                <div class="pcard-title dec c-red">Product Title</div>
-            </div>
+            {% endfor %}
         </div>
     </div>
     <!-- Crasouel Product List -->
     <div class="cplist">
-        <div class="plist-title">stock products</div>
+        <div class="plist-title">{% trans 'stock products' %}</div>
         <div class="plist-hr"></div>
+        
         <div class="cplist-box">
+        {% for product in products %}
             <a href="#" class="pcard">
                 <div class="pcard-box">
                     <div class="pcard-img">
-                        <img src="./assets/img/default-removebg-preview.png" alt="">
+                    {% if product.product_photo %}
+                        <img src="{{ product.product_photo.url }}" alt="">
+                        {% endif %}
                     </div>
                 </div>
-                <div class="pcard-title">Product Title</div>
+                <div class="pcard-title">{{ product.product_name }}</div>
             </a>
-            <a href="#" class="pcard">
-                <div class="pcard-box">
-                    <div class="pcard-img">
-                        <img src="./assets/img/default-removebg-preview.png" alt="">
-                    </div>
-                </div>
-                <div class="pcard-title">Product Title</div>
-            </a>
-            <a href="#" class="pcard">
-                <div class="pcard-box">
-                    <div class="pcard-img">
-                        <img src="./assets/img/default-removebg-preview.png" alt="">
-                    </div>
-                </div>
-                <div class="pcard-title">Product Title</div>
-            </a>
-            <a href="#" class="pcard">
-                <div class="pcard-box">
-                    <div class="pcard-img">
-                        <img src="./assets/img/default-removebg-preview.png" alt="">
-                    </div>
-                </div>
-                <div class="pcard-title">Product Title</div>
-            </a>
-            <a href="#" class="pcard">
-                <div class="pcard-box">
-                    <div class="pcard-img">
-                        <img src="./assets/img/default-removebg-preview.png" alt="">
-                    </div>
-                </div>
-                <div class="pcard-title">Product Title</div>
-            </a>
-            <a href="#" class="pcard">
-                <div class="pcard-box">
-                    <div class="pcard-img">
-                        <img src="./assets/img/default-removebg-preview.png" alt="">
-                    </div>
-                </div>
-                <div class="pcard-title">Product Title</div>
-            </a>
-            <a href="#" class="pcard">
-                <div class="pcard-box">
-                    <div class="pcard-img">
-                        <img src="./assets/img/default-removebg-preview.png" alt="">
-                    </div>
-                </div>
-                <div class="pcard-title">Product Title</div>
-            </a>
-            <a href="#" class="pcard">
-                <div class="pcard-box">
-                    <div class="pcard-img">
-                        <img src="./assets/img/default-removebg-preview.png" alt="">
-                    </div>
-                </div>
-                <div class="pcard-title">Product Title</div>
-            </a>
-            <a href="#" class="pcard">
-                <div class="pcard-box">
-                    <div class="pcard-img">
-                        <img src="./assets/img/default-removebg-preview.png" alt="">
-                    </div>
-                </div>
-                <div class="pcard-title">Product Title</div>
-            </a>
-            <a href="#" class="pcard">
-                <div class="pcard-box">
-                    <div class="pcard-img">
-                        <img src="./assets/img/default-removebg-preview.png" alt="">
-                    </div>
-                </div>
-                <div class="pcard-title">Product Title</div>
-            </a>
-            <a href="#" class="pcard">
-                <div class="pcard-box">
-                    <div class="pcard-img">
-                        <img src="./assets/img/default-removebg-preview.png" alt="">
-                    </div>
-                </div>
-                <div class="pcard-title">Product Title</div>
-            </a>
-            <a href="#" class="pcard">
-                <div class="pcard-box">
-                    <div class="pcard-img">
-                        <img src="./assets/img/default-removebg-preview.png" alt="">
-                    </div>
-                </div>
-                <div class="pcard-title">Product Title</div>
-            </a>
-            <a href="#" class="pcard">
-                <div class="pcard-box">
-                    <div class="pcard-img">
-                        <img src="./assets/img/default-removebg-preview.png" alt="">
-                    </div>
-                </div>
-                <div class="pcard-title">Product Title</div>
-            </a>
-            <a href="#" class="pcard">
-                <div class="pcard-box">
-                    <div class="pcard-img">
-                        <img src="./assets/img/default-removebg-preview.png" alt="">
-                    </div>
-                </div>
-                <div class="pcard-title">Product Title</div>
-            </a>
-            <a href="#" class="pcard">
-                <div class="pcard-box">
-                    <div class="pcard-img">
-                        <img src="./assets/img/default-removebg-preview.png" alt="">
-                    </div>
-                </div>
-                <div class="pcard-title">Product Title</div>
-            </a>
+            {% endfor %}
         </div>
+        
     </div>
     <!-- Table Product List -->
     <div class="tplist">
-        <div class="plist-title">بیشترین بازدید</div>
+        <div class="plist-title">{% trans 'بیشترین بازدید' %}</div>
         <div class="plist-hr"></div>
         <form class="plist__search">
             <div class="plist__search-btn">
                 <button>جستوجو</button>
             </div>
             <div class="plist__search-input">
-                <input type="text" placeholder="جستوجوی محصول یا برند مورد نظر">
+                <input type="text" placeholder="{% trans 'جستوجوی محصول یا برند مورد نظر' %}">
             </div>
         </form>
         <div class="scroll">
@@ -300,153 +73,22 @@
                 <thead>
                     <tr>
                         <th>Product</th>
-                        <th>Description</th>
-                        <th>Part No.</th>
+                        <th>Part Name</th>
+                        <th>Brand</th>
                         <th>Price</th>
-                        <th></th>
+                        <th style="width:16%"></th>
                     </tr>
                 </thead>
                 <tbody>
+                    {% for sample_product in sample_products %}
                     <tr>
-                        <td><img src="./assets/img/siemens_01_ovladacie_panely-removebg-preview.png" alt=""></td>
-                        <td>Lorem ipsum, dolor sit amet consectetur</td>
-                        <td>6sc6100</td>
-                        <td>250001</td>
-                        <td><button class="add_to_cart">افزودن به سبد خرید</button></td>
+                        <td>{% if sample_product.product_photo %}<img src="{{ sample_product.product_photo.url }}" alt="">{% endif %}</td>
+                        <td>{{ sample_product.product_name }}</td>
+                        <td>{{ sample_product.brand }}</td>
+                        <td>{% if sample_product.price %}{{ sample_product.price }}{% else %}-{% endif %}</td>
+                        <td><button class="add_to_cart">{% trans 'افزودن به سبد خرید' %}</button></td>
                     </tr>
-                    <tr>
-                        <td><img src="./assets/img/siemens_01_ovladacie_panely-removebg-preview.png" alt=""></td>
-                        <td>Lorem ipsum, dolor sit amet consectetur</td>
-                        <td>6sc6100</td>
-                        <td>250002</td>
-                        <td><button class="add_to_cart">افزودن به سبد خرید</button></td>
-                    </tr>
-                    <tr>
-                        <td><img src="./assets/img/siemens_01_ovladacie_panely-removebg-preview.png" alt=""></td>
-                        <td>Lorem ipsum, dolor sit amet consectetur</td>
-                        <td>6sc6100</td>
-                        <td>250003</td>
-                        <td><button class="add_to_cart">افزودن به سبد خرید</button></td>
-                    </tr>
-                    <tr>
-                        <td><img src="./assets/img/siemens_01_ovladacie_panely-removebg-preview.png" alt=""></td>
-                        <td>Lorem ipsum, dolor sit amet consectetur</td>
-                        <td>6sc6100</td>
-                        <td>250004</td>
-                        <td><button class="add_to_cart">افزودن به سبد خرید</button></td>
-                    </tr>
-                    <tr>
-                        <td><img src="./assets/img/siemens_01_ovladacie_panely-removebg-preview.png" alt=""></td>
-                        <td>Lorem ipsum, dolor sit amet consectetur</td>
-                        <td>6sc6100</td>
-                        <td>250005</td>
-                        <td><button class="add_to_cart">افزودن به سبد خرید</button></td>
-                    </tr>
-                    <tr>
-                        <td><img src="./assets/img/siemens_01_ovladacie_panely-removebg-preview.png" alt=""></td>
-                        <td>Lorem ipsum, dolor sit amet consectetur</td>
-                        <td>6sc6100</td>
-                        <td>250006</td>
-                        <td><button class="add_to_cart">افزودن به سبد خرید</button></td>
-                    </tr>
-                    <tr>
-                        <td><img src="./assets/img/siemens_01_ovladacie_panely-removebg-preview.png" alt=""></td>
-                        <td>Lorem ipsum, dolor sit amet consectetur</td>
-                        <td>6sc6100</td>
-                        <td>250007</td>
-                        <td><button class="add_to_cart">افزودن به سبد خرید</button></td>
-                    </tr>
-                    <tr>
-                        <td><img src="./assets/img/siemens_01_ovladacie_panely-removebg-preview.png" alt=""></td>
-                        <td>Lorem ipsum, dolor sit amet consectetur</td>
-                        <td>6sc6100</td>
-                        <td>250008</td>
-                        <td><button class="add_to_cart">افزودن به سبد خرید</button></td>
-                    </tr>
-                    <tr>
-                        <td><img src="./assets/img/siemens_01_ovladacie_panely-removebg-preview.png" alt=""></td>
-                        <td>Lorem ipsum, dolor sit amet consectetur</td>
-                        <td>6sc6100</td>
-                        <td>250009</td>
-                        <td><button class="add_to_cart">افزودن به سبد خرید</button></td>
-                    </tr>
-                    <tr>
-                        <td><img src="./assets/img/siemens_01_ovladacie_panely-removebg-preview.png" alt=""></td>
-                        <td>Lorem ipsum, dolor sit amet consectetur</td>
-                        <td>6sc6100</td>
-                        <td>2500010</td>
-                        <td><button class="add_to_cart">افزودن به سبد خرید</button></td>
-                    </tr>
-                    <tr>
-                        <td><img src="./assets/img/siemens_01_ovladacie_panely-removebg-preview.png" alt=""></td>
-                        <td>Lorem ipsum, dolor sit amet consectetur</td>
-                        <td>6sc6100</td>
-                        <td>2500011</td>
-                        <td><button class="add_to_cart">افزودن به سبد خرید</button></td>
-                    </tr>
-                    <tr>
-                        <td><img src="./assets/img/siemens_01_ovladacie_panely-removebg-preview.png" alt=""></td>
-                        <td>Lorem ipsum, dolor sit amet consectetur</td>
-                        <td>6sc6100</td>
-                        <td>2500012</td>
-                        <td><button class="add_to_cart">افزودن به سبد خرید</button></td>
-                    </tr>
-                    <tr>
-                        <td><img src="./assets/img/siemens_01_ovladacie_panely-removebg-preview.png" alt=""></td>
-                        <td>Lorem ipsum, dolor sit amet consectetur</td>
-                        <td>6sc6100</td>
-                        <td>2500013</td>
-                        <td><button class="add_to_cart">افزودن به سبد خرید</button></td>
-                    </tr>
-                    <tr>
-                        <td><img src="./assets/img/siemens_01_ovladacie_panely-removebg-preview.png" alt=""></td>
-                        <td>Lorem ipsum, dolor sit amet consectetur</td>
-                        <td>6sc6100</td>
-                        <td>2500014</td>
-                        <td><button class="add_to_cart">افزودن به سبد خرید</button></td>
-                    </tr>
-                    <tr>
-                        <td><img src="./assets/img/siemens_01_ovladacie_panely-removebg-preview.png" alt=""></td>
-                        <td>Lorem ipsum, dolor sit amet consectetur</td>
-                        <td>6sc6100</td>
-                        <td>2500015</td>
-                        <td><button class="add_to_cart">افزودن به سبد خرید</button></td>
-                    </tr>
-                    <tr>
-                        <td><img src="./assets/img/siemens_01_ovladacie_panely-removebg-preview.png" alt=""></td>
-                        <td>Lorem ipsum, dolor sit amet consectetur</td>
-                        <td>6sc6100</td>
-                        <td>2500016</td>
-                        <td><button class="add_to_cart">افزودن به سبد خرید</button></td>
-                    </tr>
-                    <tr>
-                        <td><img src="./assets/img/siemens_01_ovladacie_panely-removebg-preview.png" alt=""></td>
-                        <td>Lorem ipsum, dolor sit amet consectetur</td>
-                        <td>6sc6100</td>
-                        <td>2500017</td>
-                        <td><button class="add_to_cart">افزودن به سبد خرید</button></td>
-                    </tr>
-                    <tr>
-                        <td><img src="./assets/img/siemens_01_ovladacie_panely-removebg-preview.png" alt=""></td>
-                        <td>Lorem ipsum, dolor sit amet consectetur</td>
-                        <td>6sc6100</td>
-                        <td>2500018</td>
-                        <td><button class="add_to_cart">افزودن به سبد خرید</button></td>
-                    </tr>
-                    <tr>
-                        <td><img src="./assets/img/siemens_01_ovladacie_panely-removebg-preview.png" alt=""></td>
-                        <td>Lorem ipsum, dolor sit amet consectetur</td>
-                        <td>6sc6100</td>
-                        <td>2500019</td>
-                        <td><button class="add_to_cart">افزودن به سبد خرید</button></td>
-                    </tr>
-                    <tr>
-                        <td><img src="./assets/img/siemens_01_ovladacie_panely-removebg-preview.png" alt=""></td>
-                        <td>Lorem ipsum, dolor sit amet consectetur</td>
-                        <td>6sc6100</td>
-                        <td>2500020</td>
-                        <td><button class="add_to_cart">افزودن به سبد خرید</button></td>
-                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
@@ -458,15 +100,15 @@
                 <div class="dfo__description-map">
                     <div id="app"></div>
                 </div>
-                <div class="dfo__description-address">آدرس: دقوز آباد سفلا</div>
+                <div class="dfo__description-address">{% trans 'آدرس: دقوز آباد سفلا' %}</div>
             </div>
             <!-- prf ==> Product request Form -->
             <div class="dfo__prf">
-                <a href="" class="btn-green-fill">فرم درخواست محصول</a>
-                <span class="sentence">ما همیشه آماده هستیم برای درخواست های شما</span>
+                <a href="" class="btn-green-fill">{% trans 'فرم درخواست محصول' %}</a>
+                <span class="sentence">{% trans 'ما همیشه آماده هستیم برای درخواست های شما' %}</span>
                 <div class="dfo__prf-helper">
-                    <span>جهت درخواست خرید محصولات لطفا این فایل را دانلود نمایید</span>
-                    <span>پس از دانلود و تکمیل فرم درخواست محصولات و فرم را به ایمیل ما به نشانی زیر ارسال نمایید</span>
+                    <span>{% trans 'جهت درخواست خرید محصولات لطفا این فایل را دانلود نمایید' %}</span>
+                    <span>{% trans 'پس از دانلود و تکمیل فرم درخواست محصولات و فرم را به ایمیل ما به نشانی زیر ارسال نمایید' %}</span>
                 </div>
                 <div class="dfo__prf-email">orders@sahara.com</div>
             </div>
@@ -477,28 +119,79 @@
                             <img src="{% static 'img/handle-with-care.png' %}" alt="">
                         </div>
                         <div class="dfo__informations__list__item-statistics">+1000</div>
-                        <div class="dfo__informations__list__item-name">محصول</div>
+                        <div class="dfo__informations__list__item-name">{% trans 'محصول' %}</div>
                     </div>
                     <div class="dfo__informations__list__item">
                         <div class="dfo__informations__list__item-img">
                             <img src="{% static 'img/growth.png' %}" alt="">
                         </div>
                         <div class="dfo__informations__list__item-statistics">+6000</div>
-                        <div class="dfo__informations__list__item-name">کاربر و مشتری</div>
+                        <div class="dfo__informations__list__item-name">{% trans 'کاربر و مشتری' %}</div>
                     </div>
                     <div class="dfo__informations__list__item">
                         <div class="dfo__informations__list__item-img">
                             <img src="{% static 'img/review.png' %}" alt="">
                         </div>
                         <div class="dfo__informations__list__item-statistics">+2500</div>
-                        <div class="dfo__informations__list__item-name">رضایت از خرید</div>
+                        <div class="dfo__informations__list__item-name">{% trans 'رضایت از خرید' %}</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </main>
-<script type="text/javascript" src="https://cdn.map.ir/web-sdk/1.4.2/js/jquery-3.2.1.min.js"></script>
+	<div class="sl">
+		<div class="sl-box">
+			<div class="sl-close">
+				<i class='bx bx-x'></i>
+			</div>
+			<div class="scroll">
+				<div class="sl-root">
+					<div class="sl__pdetail">
+						<div class="sl__pdetail-box">
+							
+						</div>
+						<div class="sl__pdetail__pnum d-flex num-product">
+							<input type="text" class="input-green-border sl__pdetail__pnum-input num-product-input" value="1" min="1">
+							<button class="btn-green-fill num-product-add sl__pdetail__pnum-add">
+								<i class='bx bx-message-square-add'></i>
+							</button>
+							<button class="btn-red-fill num-product-remove sl__pdetail__pnum-remove">
+								<i class='bx bx-message-square-minus'></i>
+							</button>
+							<span class="sl__pdetail__pnum-text">تعداد کالا</span>
+						</div>
+						<!-- Download Product Information -->
+						<a href="#" class="sl__pdetail-dpi">دانلود فایل مشخصات محصول</a>
+						<!-- Add Product To Cart -->
+						<a href="#" class="sl__pdetail-atc">افزودن به سبد خرید</a>
+					</div>
+					<div class="sl__plist">
+						<!-- Product Number Result -->
+						<div class="sl__plist__pnr">
+							<div class="sl__plist__pnr-title">تعداد محصولات جستوجو شده</div>
+							<div class="sl__plist__pnr-num">25</div>
+						</div>
+						<div class="scroll">
+							<div class="sl__plist-box">
+								
+							</div>
+						</div>
+						<div class="sl__plist__paginator">
+							<div class="sl__plist__paginator-list">
+								<a href="#" class="sl__plist__paginator-item">1</a>
+								<a href="#" class="sl__plist__paginator-item active">2</a>
+								<a href="#" class="sl__plist__paginator-item">3</a>
+								<a href="#" class="sl__plist__paginator-item">4</a>
+								<a href="#" class="sl__plist__paginator-item">5</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 <script type="text/javascript" src="https://cdn.map.ir/web-sdk/1.4.2/js/mapp.env.js"></script>
 <script type="text/javascript" src="https://cdn.map.ir/web-sdk/1.4.2/js/mapp.min.js"></script>
 <script>
@@ -518,6 +211,61 @@
         app.dynamicUrl({
             marker: true,
         });
+		$("#actionSearch").click(function(){
+			search($("#actionSearchInput").val())
+		});
+		
+		$('.sl__plist-box').on('click', '.sl__plist__pcard', function(e){
+			$(e.currentTarget).addClass('active')
+			getProduct(e.currentTarget.getAttribute('data')).then( data =>{
+                console.log(data)
+                stockClass = '';
+                originalClass = '';
+                if (data.type == 'Stock') {
+                    stockClass = 'sl__pdetail__oos-original'
+                    originalClass = 'sl__pdetail__oos-stock'
+                } else {
+                    originalClass = 'sl__pdetail__oos-original'
+                    stockClass = 'sl__pdetail__oos-stock'
+                }
+                $(".sl__pdetail-box").empty();
+                $(".sl__pdetail-box").append(`<div class="sl__pdetail__informations">
+                            <div class="sl__pdetail__informations-img">
+                                <img src="${data.product_photo}" alt="***">
+                            </div>
+                            <div class="sl__pdetail__informations-list">
+                                <div class="sl__pdetail__informations-title">${data.product_name}</div>
+                                <div class="sl__pdetail__informations-description">${data.brand}</div>
+                            </div>
+                        </div>
+                        <!-- Alternative Name -->
+                        <div class="sl__pdetail__anl">
+                            <div class="sl__pdetail__anl-title">alternative name</div>
+                            <div class="sl__pdetail__anl-list">
+                                <div class="sl__pdetail__anl-item">${data.alternative_name_1}</div>
+                                <div class="sl__pdetail__anl-item">${data.alternative_name_2}</div>
+                                <div class="sl__pdetail__anl-item">${data.alternative_name_3}</div>
+                                <div class="sl__pdetail__anl-item">${data.alternative_name_4}</div>
+                            </div>
+                        </div>
+                        <!-- Origianl Or Stock -->
+                        <div class="sl__pdetail__oos original">
+                            <div class="sl__pdetail__oos-box">
+                                <a href="#" class="${ stockClass }" >stock</a>
+                                <a href="#" class="${ originalClass }">original</a>
+                            </div>
+                        </div>
+                        <div class="sl__pdetail__price">
+                            <div class="sl__pdetail__price-title">{% trans 'قیمت' %}</div>
+                            <div class="sl__pdetail__price-number">${data.price} ${data.currency}</div>
+                        </div>`)
+                })
+				
+		});
+		$(".sl-close i").click(function(){
+			$(".sl").hide()
+		});
+		
     });
 </script>
 {% endblock %}

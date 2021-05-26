@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,6 +11,8 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.map.ir/web-sdk/1.4.2/css/mapp.min.css">
     <link rel="stylesheet" href="https://cdn.map.ir/web-sdk/1.4.2/css/fa/style.css">
+    
+    <script type="text/javascript" src="https://cdn.map.ir/web-sdk/1.4.2/js/jquery-3.2.1.min.js"></script>
     <title>صحارا</title>
 </head>
 
@@ -65,25 +68,77 @@
             </div>
         </div>
         <div class="nav__cart">
-            <a href="#" class="nav__cart__item">
-                <span class="badge">2</span>
+            <a href="{% url 'cart' %}" class="nav__cart__item">
+                <span id="cartItems" class="badge">0</span>
                 <i class='bx bx-cart-alt'></i>
                 <span class="name">سبد خرید</span>
             </a>
         </div>
         <div class="nav__search">
-            <form action="">
+            <form  id='navSearch' action="">
                 <div class="nav__search-icon">
                     <i class='bx bx-search'></i>
                 </div>
                 <div class="nav__search-input">
-                    <input type="text" placeholder="جستجوی محصول مورد نظر">
+                    <input id="keyword" type="text" placeholder="جستجوی محصول مورد نظر">
                 </div>
             </form>
             <div class="nav__search-border"></div>
         </div>
     </nav>
     <main>{% block content %}{% endblock %} </main>
+    <div class="sl">
+		<div class="sl-box">
+			<div class="sl-close">
+				<i class='bx bx-x'></i>
+			</div>
+			<div class="scroll">
+				<div class="sl-root">
+					<div class="sl__pdetail">
+						<div class="sl__pdetail-box">
+							
+						</div>
+						<div class="sl__pdetail__pnum d-flex num-product">
+							<input type="text" class="input-green-border sl__pdetail__pnum-input num-product-input" value="1" min="1">
+							<button class="btn-green-fill num-product-add sl__pdetail__pnum-add">
+								<i class='bx bx-message-square-add'></i>
+							</button>
+							<button class="btn-red-fill num-product-remove sl__pdetail__pnum-remove">
+								<i class='bx bx-message-square-minus'></i>
+							</button>
+							<span class="sl__pdetail__pnum-text">تعداد کالا</span>
+						</div>
+						<!-- Download Product Information -->
+						<a href="#" class="sl__pdetail-dpi">دانلود فایل مشخصات محصول</a>
+						<!-- Add Product To Cart -->
+						<a href="#" class="sl__pdetail-atc">افزودن به سبد خرید</a>
+					</div>
+					<div class="sl__plist">
+						<!-- Product Number Result -->
+						<div class="sl__plist__pnr">
+							<div class="sl__plist__pnr-title">تعداد محصولات جستوجو شده</div>
+							<div class="sl__plist__pnr-num">25</div>
+						</div>
+						<div class="scroll">
+							<div class="sl__plist-box">
+								
+							</div>
+						</div>
+						<div class="sl__plist__paginator">
+							<div class="sl__plist__paginator-list">
+								<a href="#" class="sl__plist__paginator-item">1</a>
+								<a href="#" class="sl__plist__paginator-item active">2</a>
+								<a href="#" class="sl__plist__paginator-item">3</a>
+								<a href="#" class="sl__plist__paginator-item">4</a>
+								<a href="#" class="sl__plist__paginator-item">5</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
     <footer>
         <div class="footer__cp">
             تمامی حقوق این سایت متعلق به شرکت
@@ -129,6 +184,7 @@
         </div>
     </footer>
 </body>
+
 <script src="{% static 'js/main.js' %}"></script>
 
 </html>
