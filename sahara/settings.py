@@ -39,6 +39,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'sahara.urls'
@@ -99,7 +100,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'fa'
+LANGUAGES = (
+    ("fa", "Persian"),
+    ("en", "English"),
+    ) 
+
+# LANGUAGE_CODE = 'fa'
+LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Asia/Tehran'
 
@@ -109,9 +116,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-LOCALE_PATHS = [    
-    os.path.join(BASE_DIR , 'locale')
-]
+LOCALE_PATHS = ( os.path.join(BASE_DIR , 'locale'),)
 
 
 # Static files (CSS, JavaScript, Images)

@@ -26,7 +26,7 @@
         </div>
         <div class="phone-num">
             <a href="tell:+981234567890">+98&nbsp;123&nbsp;456&nbsp;7890</a>
-            <span>&nbsp;&colon;&nbsp;شماره تماس</span>
+            <span>&nbsp;&colon;&nbsp;{% trans 'شماره تماس' %}</span>
         </div>
         <div class="website-address">
             <a href="">www.saharasupply.com</a>
@@ -35,7 +35,7 @@
     <nav>
         <div class="nav__openner">
             <i class='bx bx-menu'></i>
-            <span class="name">منو</span>
+            <span class="name">{% trans 'منو' %}</span>
         </div>
         <div class="nav__items">
             <div class="times">
@@ -43,22 +43,12 @@
             </div>
             <div class="nav__item-box">
                 <a href="{% url 'index' %}" class="nav__item active">
-                    <span>صفحه اصلی</span>
+                    <span>{% trans 'صفحه اصلی' %}</span>
                 </a>
             </div>
             <div class="nav__item-box">
                 <a href="{% url 'categories' %}" class="nav__item">
-                    <span>برند و محصولات</span>
-                </a>
-            </div>
-            <div class="nav__item-box">
-                <a href="#" class="nav__item">
-                    <span>درباره ما</span>
-                </a>
-            </div>
-            <div class="nav__item-box">
-                <a href="#" class="nav__item">
-                    <span>بلاگ</span>
+                    <span>{% trans 'برند و محصولات' %}</span>
                 </a>
             </div>
             <div class="chooser-lang">
@@ -71,7 +61,7 @@
             <a href="{% url 'cart' %}" class="nav__cart__item">
                 <span id="cartItems" class="badge">0</span>
                 <i class='bx bx-cart-alt'></i>
-                <span class="name">سبد خرید</span>
+                <span class="name">{% trans 'سبد خرید' %}</span>
             </a>
         </div>
         <div class="nav__search">
@@ -80,7 +70,7 @@
                     <i class='bx bx-search'></i>
                 </div>
                 <div class="nav__search-input">
-                    <input id="keyword" type="text" placeholder="جستجوی محصول مورد نظر">
+                    <input id="keyword" type="text" placeholder="{% trans 'جستجوی محصول مورد نظر' %}">
                 </div>
             </form>
             <div class="nav__search-border"></div>
@@ -106,17 +96,17 @@
 							<button class="btn-red-fill num-product-remove sl__pdetail__pnum-remove">
 								<i class='bx bx-message-square-minus'></i>
 							</button>
-							<span class="sl__pdetail__pnum-text">تعداد کالا</span>
+							<span class="sl__pdetail__pnum-text">{% trans 'تعداد کالا' %}</span>
 						</div>
 						<!-- Download Product Information -->
-						<a href="#" class="sl__pdetail-dpi">دانلود فایل مشخصات محصول</a>
+						<a href="#" class="sl__pdetail-dpi">{% trans 'دانلود فایل مشخصات محصول' %}</a>
 						<!-- Add Product To Cart -->
-						<a href="#" class="sl__pdetail-atc">افزودن به سبد خرید</a>
+						<a href="#" class="sl__pdetail-atc">{% trans 'افزودن به سبد خرید' %}</a>
 					</div>
 					<div class="sl__plist">
 						<!-- Product Number Result -->
 						<div class="sl__plist__pnr">
-							<div class="sl__plist__pnr-title">تعداد محصولات جستوجو شده</div>
+							<div class="sl__plist__pnr-title">{% trans 'تعداد محصولات جستوجو شده' %}</div>
 							<div class="sl__plist__pnr-num">25</div>
 						</div>
 						<div class="scroll">
@@ -140,26 +130,26 @@
 	</div>
 
     <footer>
-        <div class="footer__cp">
-            تمامی حقوق این سایت متعلق به شرکت
-            <span class="sucess">&nbsp;*****&nbsp;</span> میباشد و هرگونه کپی برداری از آن
-            <span class="danger">&nbsp;پیگرد قانونی&nbsp;</span> خواهد داشت
+        <div class="footer__cp">{% trans 
+            'تمامی حقوق این سایت متعلق به شرکت' %}
+            <span class="sucess">&nbsp;*****&nbsp;</span>{% trans  'میباشد و هرگونه کپی برداری از آن' %}
+            <span class="danger">&nbsp;پیگرد قانونی&nbsp;</span>{% trans  'خواهد داشت' %}
         </div>
         <div class="footer__item footer__item__list">
-            <div class="footer__item__list-title">دسترسی سریع</div>
-            <span class="footer__item__list-item">آدرس: تهران بلوار آفریقا خیابان ناهید غربی پلاک ۵۶ واحد ۵ طبقه اول</span>
-            <span class="footer__item__list-item">تلفن: ۲۶۲۱۹۸۴۴</span>
-            <span class="footer__item__list-item">فکس: ۲۶۲۱۹۸۴۵</span>
+            <div class="footer__item__list-title">{% trans 'دسترسی سریع' %}</div>
+            <span class="footer__item__list-item">{% trans 'آدرس: تهران بلوار آفریقا خیابان ناهید غربی پلاک ۵۶ واحد ۵ طبقه اول' %}</span>
+            <span class="footer__item__list-item">{% trans 'تلفن: ۲۶۲۱۹۸۴۴' %}</span>
+            <span class="footer__item__list-item">{% trans 'فکس: ۲۶۲۱۹۸۴۵' %}</span>
         </div>
         <div class="footer__item footer__item__list">
-            <div class="footer__item__list-title swap">دسترسی سریع</div>
-            <a href="#" class="footer__item__list-item swap">خانه</a>
-            <a href="#" class="footer__item__list-item swap">برند ها</a>
-            <a href="#" class="footer__item__list-item swap">محصولات</a>
-            <a href="#" class="footer__item__list-item swap">درباره ما</a>
+            <div class="footer__item__list-title swap">{% trans 'دسترسی سریع' %}</div>
+            <a href="#" class="footer__item__list-item swap">{% trans 'خانه' %}</a>
+            <a href="#" class="footer__item__list-item swap">{% trans 'برند ها' %}</a>
+            <a href="#" class="footer__item__list-item swap">{% trans 'محصولات' %}</a>
+            <a href="#" class="footer__item__list-item swap">{% trans 'درباره ما' %}</a>
         </div>
         <div class="footer__item footer__item__social">
-            <span class="footer__item__social-title">ما را در شبکه های اجتماعی دنبال کنید</span>
+            <span class="footer__item__social-title">{% trans 'ما را در شبکه های اجتماعی دنبال کنید' %}</span>
             <div class="footer__item__social-icons">
                 <a href="" class="footer__item__social-icon">
                     <i class="bx bxl-google-plus bx-tada-hover"></i>
@@ -175,8 +165,8 @@
                 </a>
             </div>
             <div class="footer__item__newsletters">
-                <a href="#" class="footer__item__newsletters-span">نظرات خود را با ما به اشتراک بگذارید</a>
-                <a href="#" class="footer__item__newsletters-title">عضویت در خبرنامه</a>
+                <a href="#" class="footer__item__newsletters-span">{% trans 'نظرات خود را با ما به اشتراک بگذارید' %}</a>
+                <a href="#" class="footer__item__newsletters-title">{% trans 'عضویت در خبرنامه' %}</a>
                 <div class="footer__item__newsletters-icon">
                     <i class='bx bx-envelope bx-tada-hover'></i>
                 </div>

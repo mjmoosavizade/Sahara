@@ -19,7 +19,6 @@ close.addEventListener("click", closeMenu);
 const search = (keyword) => {
     $.get("/search", { "keyword": keyword })
         .done((data) => {
-            console.log(data);
             $(".sl").css('display', 'flex');
             data.results.forEach(element => {
                 $(".sl__plist-box").append(`<a href="javascript:void(0);" data="${element.slug}" class="sl__plist__pcard">
@@ -42,7 +41,6 @@ const getProduct = slug => {
         $.get("/get_product", { "slug": slug })
             .done((data) => {
                 data = data.results;
-                console.log(data);
                 resolve(data);
             })
             .fail(() => {
@@ -81,5 +79,4 @@ const addToCart = (slug, qty) => {
     }
     localStorage.setItem('items', JSON.stringify(cat));
     $("#cartItems").html(cat.length)
-    console.log(JSON.parse(localStorage.getItem('items')));
 };

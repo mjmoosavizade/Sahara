@@ -1,116 +1,113 @@
 {% extends 'base.html' %} {% load static %} {% load i18n %} {% block content %}
 <!-- Main -->
-  <main>
+<main>
     <div class="cart">
-      <div class="cart__tplist">
-        <div class="cart__tplist-title">{% trans  'کالا های پروژه شما' %}</div>
-        <div class="scroll">
-          <table class="cart__tplist-box">
-            <thead>
-              <tr>
-                <th>{% trans 'Product' %}</th>
-                <th>{% trans 'Description' %}</th>
-                <th>{% trans 'Code' %}</th>
-                <th>{% trans 'Part no.' %}</th>
-                <th>{% trans 'QTY' %}</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="product">
-                <td class="product-img">
-                  <img src="./assets/img/siemens_01_ovladacie_panely-removebg-preview.png" alt="">
-                </td>
-                <td class="product-description">Lorem ipsum, dolor sit amet consectetur adipisicing elit</td>
-                <td class="product-code">88TD063</td>
-                <td class="product-price">400$</td>
-                <td class="product-order-number">
-                  <div class="d-flex num-product">
-                    <input type="text" class="input-green-border num-product-input" value="1">
-                    <button class="btn-green-fill num-product-add">
+        <div class="cart__tplist">
+            <div class="cart__tplist-title">{% trans 'کالا های پروژه شما' %}</div>
+            <div class="scroll">
+                <table class="cart__tplist-box">
+                    <thead>
+                        <tr>
+                            <th>{% trans 'Product' %}</th>
+                            <th>{% trans 'Description' %}</th>
+                            <th>{% trans 'Code' %}</th>
+                            <th>{% trans 'Part no.' %}</th>
+                            <th>{% trans 'QTY' %}</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="product">
+                            <td class="product-img">
+                                <img src="./assets/img/siemens_01_ovladacie_panely-removebg-preview.png" alt="">
+                            </td>
+                            <td class="product-description">Lorem ipsum, dolor sit amet consectetur adipisicing elit</td>
+                            <td class="product-code">88TD063</td>
+                            <td class="product-price">400$</td>
+                            <td class="product-order-number">
+                                <div class="d-flex num-product">
+                                    <input type="text" class="input-green-border num-product-input" value="1">
+                                    <button class="btn-green-fill num-product-add">
                       <i class='bx bx-message-square-add'></i>
                     </button>
-                    <button class="btn-red-fill num-product-remove">
+                                    <button class="btn-red-fill num-product-remove">
                       <i class='bx bx-message-square-minus'></i>
                     </button>
-                  </div>
-                </td>
-                <td>
-                  <div class="delete">
-                    <a href="#" class="img">
-                      <img src="./assets/img/delete.png" alt="">
-                    </a>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="delete">
+                                    <a href="#" class="img">
+                                        <img src="./assets/img/delete.png" alt="">
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-      </div>
-      <div class="cart__total">
-        <div class="cart__total-box">
-          <div class="cart__total__data gold">
-            <div class="cart__total__data-name">total product:</div>
-            <div class="cart__total__data-value">1590&nbsp;$</div>
-          </div>
-          <div class="cart__total__data gold">
-            <div class="cart__total__data-name">total shipping:</div>
-            <div class="cart__total__data-value">390&nbsp;$</div>
-          </div>
-          <div class="cart__total__data-hr"></div>
-          <div class="cart__total__data red">
-            <div class="cart__total__data-name">total:</div>
-            <div class="cart__total__data-value">1940&nbsp;$</div>
-          </div>
+        <div class="cart__total">
+            <div class="cart__total-box">
+                <div class="cart__total__data gold">
+                    <div class="cart__total__data-name">total product:</div>
+                    <div class="cart__total__data-value">1590&nbsp;$</div>
+                </div>
+                <div class="cart__total__data gold">
+                    <div class="cart__total__data-name">total shipping:</div>
+                    <div class="cart__total__data-value">390&nbsp;$</div>
+                </div>
+                <div class="cart__total__data-hr"></div>
+                <div class="cart__total__data red">
+                    <div class="cart__total__data-name">total:</div>
+                    <div class="cart__total__data-value">1940&nbsp;$</div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="cart__form">
-        <form action="" class="cart__form-box">
-          <div class="form-control">
-            <input type="text" placeholder="{% trans 'نام' %}*">
-          </div>
-          <div class="form-control">
-            <input type="text" placeholder="{% trans 'نام خانوادگی' * %}">
-          </div>
-          <div class="form-control">
-            <input type="text" placeholder="{% trans 'شماره تماس' * %}">
-          </div>
-          <div class="form-control">
-            <input type="text" placeholder="{% trans 'ایمیل' * %}">
-          </div>
-          <div class="form-control">
-            <select disabled>
-              <option value="null">{% trans * 'استان' %}</option>
+        <div class="cart__form">
+            <form action="{% url 'cart' %}" id="cartForm" method="POST" class="cart__form-box">
+                <div class="form-control">
+                    <input type="text" placeholder="{% trans 'نام' %}*">
+                </div>
+                <div class="form-control">
+                    <input type="text" placeholder="{% trans 'نام خانوادگی'  %}*">
+                </div>
+                <div class="form-control">
+                    <input type="text" placeholder="{% trans 'شماره تماس'  %}*">
+                </div>
+                <div class="form-control">
+                    <input type="text" placeholder="{% trans 'ایمیل'  %}*">
+                </div>
+                <div class="form-control">
+                    <select disabled>
+              <option value="null">{% trans '* استان' %}</option>
             </select>
-          </div>
-          <div class="form-control">
-            <select disabled>
-              <option value="null">{% trans * 'شهر' %}</option>
+                </div>
+                <div class="form-control">
+                    <select disabled>
+              <option value="null">{% trans '* شهر' %}</option>
             </select>
-          </div>
-          <div class="cart__form-btns">
-            <button type="submit" class="btn-green-fill">{% trans 'ارسال فرم خرید' %}</button>
-            <button type="reset" class="btn-red-border">{% trans 'حذف همه' %}</button>
-          </div>
-          <!-- Error List -->
-          <div class="cart__form__elist">
-            <div class="cart__form__el-item">{% trans 'با ارسال فرم خرید حداکثر تا ۲۴ ساعت از طریق پشتیبانی با شما ارتباط برقرار خواهیم کرد.' %}</div>
-          </div>
-        </form>
-      </div>
+                </div>
+                <div class="cart__form-btns">
+                    <button type="submit" class="btn-green-fill">{% trans 'ارسال فرم خرید' %}</button>
+                    <button type="reset" class="btn-red-border">{% trans 'حذف همه' %}</button>
+                </div>
+                <!-- Error List -->
+                <div class="cart__form__elist">
+                    <div class="cart__form__el-item">{% trans 'با ارسال فرم خرید حداکثر تا ۲۴ ساعت از طریق پشتیبانی با شما ارتباط برقرار خواهیم کرد.' %}</div>
+                </div>
+            </form>
+        </div>
     </div>
-  </main>
-  
+</main>
+
 <Script>
-$(document).ready(function() {
-    
-    cat = JSON.parse(localStorage.getItem('items'));
-    console.log(cat)
-    $("tbody").empty();
-    for (i in cat) {
-        console.log(cat[i])
-            getProduct(Object.keys(cat[i])[0]).then(data=>{
-                console.log('test')
+    $(document).ready(function() {
+
+        cat = JSON.parse(localStorage.getItem('items'));
+        $("tbody").empty();
+        for (i in cat) {
+            getProduct(Object.keys(cat[i])[0]).then(data => {
                 $("tbody").append(`<tr class="product">
                 <td class="product-img">
                   <img src="${data.product_photo}" alt="">
@@ -136,11 +133,16 @@ $(document).ready(function() {
                     </a>
                   </div>
                 </td>
-              </tr>`
-              );
+              </tr>`);
             });
         }
-});
+        let items = JSON.stringify(localStorage.getItem('items'))
+        let input = $("<input>")
+            .attr("type", "hidden")
+            .attr("name", "items").val(items);
+        console.log($(input).val());
+        $("#cartForm").append(input);
+    });
 </script>
 
 {% endblock %}

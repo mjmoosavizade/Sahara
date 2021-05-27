@@ -44,7 +44,7 @@ msgstr ""
 
 #: templates/cart/cart.html:70
 msgid "نام"
-msgstr ""
+msgstr "Name"
 
 #: templates/cart/cart.html:73
 msgid "نام خانوادگی"
@@ -74,7 +74,7 @@ msgstr ""
 
 #: templates/pages/index.html:6
 msgid "همه دسته بندی ها"
-msgstr ""
+msgstr "All categories"
 
 #: templates/pages/index.html:61
 msgid "بیشترین بازدید"

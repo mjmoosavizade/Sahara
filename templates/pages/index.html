@@ -218,7 +218,6 @@
 		$('.sl__plist-box').on('click', '.sl__plist__pcard', function(e){
 			$(e.currentTarget).addClass('active')
 			getProduct(e.currentTarget.getAttribute('data')).then( data =>{
-                console.log(data)
                 stockClass = '';
                 originalClass = '';
                 if (data.type == 'Stock') {
