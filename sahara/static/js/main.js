@@ -43,6 +43,9 @@ const search = (keyword) => {
 
 const toggle_search = () => {
     $(".sl").fadeToggle(200);
+    if ($(".sl").css("display") == "flex") {
+        $(".sl__pdetail-box").empty();
+    }
 };
 
 const getProduct = slug => {
