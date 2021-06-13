@@ -1,6 +1,6 @@
-from django.urls import path
+from django.urls import re_path
 from . import views
 
 urlpatterns = [
-    path('<slug:slug>', views.product, name='product')
+    re_path('(?P<slug>[\w-]+)/$', views.product, name='product')
 ]
