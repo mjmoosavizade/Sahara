@@ -3810,3 +3810,9 @@ main .cat__plist__paginator-list {
     justify-content: center;
     height: 50px
 }
+
+.flex-content-center {
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+}
