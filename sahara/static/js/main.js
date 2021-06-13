@@ -152,6 +152,16 @@ $("#mvs-search-input").keypress(event => {
         searchMostVisitedProducts($("#mvs-search-input").val());
     }
 });
+$("#mvs-search-input").keyup(event => {
+    console.log(event.target.value == "");
+    if (event.target.value == "") {
+        console.log("executed");
+        $(".mvp-name").each((i, product) => {
+            console.log(product);
+            $(product).parent().fadeIn(300);
+        });
+    }
+});
 
 $('#navSearch').submit(search_hanlder);
 $('#search-btn').click(search_hanlder);
