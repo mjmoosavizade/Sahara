@@ -62,10 +62,10 @@
         <div class="plist-hr"></div>
         <form class="plist__search">
             <div class="plist__search-btn">
-                <button>جستوجو</button>
+                <button id="mvs-search-btn">جستوجو</button>
             </div>
             <div class="plist__search-input">
-                <input type="text" placeholder="{% trans 'جستوجوی محصول یا برند مورد نظر' %}">
+                <input type="text" placeholder="{% trans 'جستوجوی محصول یا برند مورد نظر' %}" id="mvs-search-input">
             </div>
         </form>
         <div class="scroll">
@@ -83,12 +83,19 @@
                     {% for sample_product in sample_products %}
                     <tr>
                         <td>{% if sample_product.product_photo %}<img src="{{ sample_product.product_photo.url }}" alt="">{% endif %}</td>
-                        <td>{{ sample_product.product_name }}</td>
+                        <td class="mvp-name">{{ sample_product.product_name }}</td>
                         <td>{{ sample_product.brand }}</td>
                         <td>{% if sample_product.price %}{{ sample_product.price }}{% else %}-{% endif %}</td>
                         <td><button class="add_to_cart">{% trans 'افزودن به سبد خرید' %}</button></td>
                     </tr>
                     {% endfor %}
+                    <tr style="display: none;" id="nfound-box">
+                        <td>
+                            <div style="color: black; padding: 10px 15px; border-radius: 15px; background-color: rgb(240, 240, 240); margin: 30px;">
+                                محصولی یافت نشد
+                            </div>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
