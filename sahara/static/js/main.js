@@ -22,6 +22,16 @@ const search = (keyword) => {
             toggle_search();
             $(".sl").css('display', 'flex');
             $(".sl__plist-box").empty(); // clear previous search results
+            if (!data.results.length) {
+                let $msg = `
+                    <div style="
+                    color: black; padding: 10px 15px; border-radius: 15px;
+                    background-color: rgb(240, 240, 240);"> محصولی یافت نشد. </div>
+                `;
+                $(".sl__plist-box").addClass("flex-content-center");
+                $(".sl__plist-box").append($msg);
+                return;
+            }
             data.results.forEach((element, i) => {
                 let $cart = $(`<a href="javascript:void(0);" data="${element.slug}" class="sl__plist__pcard">
                     <div class="sl__plist__pcard-box">
@@ -34,6 +44,7 @@ const search = (keyword) => {
                 if (i == 0)
                     selectProduct($cart[0]);
             });
+            $(".sl__plist-box").removeClass("flex-content-center");
             $(".sl__plist__pcard:first").addClass('active');
         })
         .fail(() => {
