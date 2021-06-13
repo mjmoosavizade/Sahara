@@ -3816,3 +3816,32 @@ main .cat__plist__paginator-list {
     align-items: center;
     min-height: 300px;
 }
+
+.sl__pdetail-box {
+    position: relative;
+}
+
+.loader-dialog {
+    position: absolute;
+    top: 0; right: 0; left: 0; bottom: 0;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+}
+
+.loader-dialog .loader {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 5px solid rgb(231, 231, 231);
+    border-right: 5px solid rgb(44, 255, 115);
+    animation: rotatearound 0.4s linear infinite;
+}
+
+@keyframes rotatearound {
+    to {
+        transform: rotateZ(360deg);
+    }
+}
