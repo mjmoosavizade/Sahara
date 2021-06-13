@@ -13,7 +13,7 @@ class Category(models.Model):
         verbose_name_plural = 'دسته بندی ها'
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.category_title)
+        self.slug = slugify(self.category_title, allow_unicode=True)
         super(Category, self).save(*args, **kwargs)
 
     def __str__(self):
