@@ -24,23 +24,19 @@ const search = (keyword) => {
             $(".sl__plist-box").empty(); // clear previous search results
             $(".sl__plist__pnr-num").text(data.results.length);
             if (!data.results.length) {
-                let $msg = `
-                    <div style="
-                    color: black; padding: 10px 15px; border-radius: 15px;
-                    background-color: rgb(240, 240, 240);"> محصولی یافت نشد. </div>
-                `;
+                let $msg = new TemplateFormatter(T_product_notfound_box, {
+                    msg: "محصولی یافت نشد"
+                }).getJqueryElement();
                 $(".sl__plist-box").addClass("flex-content-center");
                 $(".sl__plist-box").append($msg);
                 return;
             }
             data.results.forEach((element, i) => {
-                let $cart = $(`<a href="javascript:void(0);" data="${element.slug}" class="sl__plist__pcard">
-                    <div class="sl__plist__pcard-box">
-                        <div class="sl__plist__pcard-img"><img src="${element.product_photo}" alt="*">
-                        </div>
-                        <div class="sl__plist__pcard-title">${element.product_name}</div>
-                    </div>
-                </a>`);
+                let $cart = new TemplateFormatter(T_product_cart, {
+                    slug: element.slug,
+                    product_photo: element.product_photo,
+                    product_name: element.product_name
+                }).getJqueryElement();
                 $(".sl__plist-box").append($cart);
                 if (i == 0)
                     selectProduct($cart[0]);
