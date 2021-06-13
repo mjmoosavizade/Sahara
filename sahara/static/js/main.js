@@ -46,8 +46,8 @@ const search = (keyword) => {
             $(".sl__plist__pcard:first").addClass('active');
         })
         .fail(() => {
-            console.log("fail")
-        });
+            console.log("fail");
+        })
 };
 
 const toggle_search = () => {
@@ -79,6 +79,9 @@ const search_hanlder = event => {
 const selectProduct = product_element => {
     $(product_element).addClass('active');
     $(product_element).siblings().removeClass("active");
+    $(".sl__pdetail-box").empty();
+    $(".sl__pdetail-box").append(new TemplateFormatter(T_loader, {}).getJqueryElement());
+    $(".loader-dialog").fadeIn(50);
     getProduct(product_element.getAttribute('data')).then( data =>{
         stockClass = '';
         originalClass = '';
@@ -89,37 +92,20 @@ const selectProduct = product_element => {
             originalClass = 'sl__pdetail__oos-original'
             stockClass = 'sl__pdetail__oos-stock'
         }
-        $(".sl__pdetail-box").empty();
-        $(".sl__pdetail-box").append(`<div class="sl__pdetail__informations">
-                    <div class="sl__pdetail__informations-img">
-                        <img src="${data.product_photo}" alt="***">
-                    </div>
-                    <div class="sl__pdetail__informations-list">
-                        <div class="sl__pdetail__informations-title">${data.product_name}</div>
-                        <div class="sl__pdetail__informations-description">${data.brand}</div>
-                    </div>
-                </div>
-                <!-- Alternative Name -->
-                <div class="sl__pdetail__anl">
-                    <div class="sl__pdetail__anl-title">alternative name</div>
-                    <div class="sl__pdetail__anl-list">
-                        <div class="sl__pdetail__anl-item">${data.alternative_name_1}</div>
-                        <div class="sl__pdetail__anl-item">${data.alternative_name_2}</div>
-                        <div class="sl__pdetail__anl-item">${data.alternative_name_3}</div>
-                        <div class="sl__pdetail__anl-item">${data.alternative_name_4}</div>
-                    </div>
-                </div>
-                <!-- Origianl Or Stock -->
-                <div class="sl__pdetail__oos original">
-                    <div class="sl__pdetail__oos-box">
-                        <a href="#" class="${ stockClass }" >stock</a>
-                        <a href="#" class="${ originalClass }">original</a>
-                    </div>
-                </div>
-                <div class="sl__pdetail__price">
-                    <div class="sl__pdetail__price-title">قیمت</div>
-                    <div class="sl__pdetail__price-number">${data.price} ${data.currency}</div>
-                </div>`);
+        $(".sl__pdetail-box").append(new TemplateFormatter(T_product_details, {
+            product_photo: data.product_photo,
+            product_name: data.product_name,
+            brand: data.brand,
+            alternative_name_1: data.alternative_name_1,
+            alternative_name_2: data.alternative_name_2,
+            alternative_name_3: data.alternative_name_3,
+            alternative_name_4: data.alternative_name_4,
+            stock_class: stockClass,
+            original_class: originalClass,
+            price: data.price,
+            currency: data.currency,
+        }).getJqueryElement());
+        $(".loader-dialog").fadeOut(50);
     });
 }
 
