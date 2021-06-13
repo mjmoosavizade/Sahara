@@ -71,8 +71,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'saharadb',
         'USER': 'postgres',
-        'PASSWORD':'12345',
-        'HOST': '127.0.0.1',
+        'PASSWORD':'ashkan31',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
