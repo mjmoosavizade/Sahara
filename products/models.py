@@ -14,7 +14,7 @@ class Brand(models.Model):
         verbose_name_plural = 'برند ها'
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.brand_name)
+        self.slug = slugify(self.brand_nam, allow_unicode=True)
         super(Brand, self).save(*args, **kwargs)
 
     def __str__(self):
@@ -62,7 +62,7 @@ class Product(models.Model):
         verbose_name_plural = 'محصولات'
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.product_name)
+        self.slug = slugify(self.product_name, allow_unicode=True)
         super(Product, self).save(*args, **kwargs)
 
     def __str__(self):
