@@ -3,6 +3,7 @@ from categories.models import Category
 from products.models import Product
 from django.http import JsonResponse
 from django.core.serializers import serialize
+from django.db.models import Q
 
 
 def index(request):
@@ -20,17 +21,19 @@ def index(request):
 
 def search(request):
     queryset_product = Product.objects.all()
-    keyword = request.GET.get('keyword')
-    if 'keyword' in request.GET.get('keyword'):
+    keyword = request.GET.get('keyword', False)
+    print (f"keyword = {keyword}")
+    if keyword:
+        print ("product has been filterd")
         queryset_product = queryset_product.filter(
-            product_name__icontains=keyword,
-            alternative_name_1__icontains=keyword,
-            alternative_name_2__icontains=keyword,
-            alternative_name_3__icontains=keyword,
-            alternative_name_4__icontains=keyword,
-            brand__icontains=keyword,
-            category__icontains=keyword)
-
+            Q(product_name__icontains=keyword)       |
+            Q(alternative_name_1__icontains=keyword) |
+            Q(alternative_name_2__icontains=keyword) |
+            Q(alternative_name_3__icontains=keyword) |
+            Q(alternative_name_4__icontains=keyword) |
+            Q(brand__brand_name__icontains=keyword)  |
+            Q(category__category_title__icontains=keyword))
+    print (f"products = {queryset_product}")
     products = []
     for i in queryset_product:
         temp_obj = {}
