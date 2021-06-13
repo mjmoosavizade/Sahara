@@ -71,12 +71,12 @@ const getProduct = slug => {
 
 };
 
-function search_hanlder(event) {
+const search_hanlder = event => {
     event.preventDefault();
     search($("#keyword").val());
 }
 
-function selectProduct(product_element){
+const selectProduct = product_element => {
     $(product_element).addClass('active');
     $(product_element).siblings().removeClass("active");
     getProduct(product_element.getAttribute('data')).then( data =>{
@@ -123,6 +123,36 @@ function selectProduct(product_element){
     });
 }
 
+const searchMostVisitedProducts = keyword => {
+    if (!keyword) return;
+    let nomatch_found = true;
+    $(".mvp-name").each((i, product) => {
+        const product_name = $(product).text();
+        console.log(product_name);
+        if (!product_name.includes(keyword) && !$(product).next().text().includes(keyword))
+            $(product).parent().fadeOut(300);
+        else {
+            nomatch_found = false;
+            $(product).parent().fadeIn(300);
+        }
+    });
+    if (nomatch_found) {
+        $("#nfound-box").fadeIn(300);
+    }
+    else {
+        $("#nfound-box").fadeOut(300);
+    }
+}
+$("#mvs-search-btn").click(event => {
+    event.preventDefault();
+    searchMostVisitedProducts($("#mvs-search-input").val());
+});
+$("#mvs-search-input").keypress(event => {
+    if (event.keycode == 13) {
+        searchMostVisitedProducts($("#mvs-search-input").val());
+    }
+});
+
 $('#navSearch').submit(search_hanlder);
 $('#search-btn').click(search_hanlder);
 $('.sl').click(search_hanlder);
@@ -152,5 +182,5 @@ const addToCart = (slug, qty) => {
         }
     }
     localStorage.setItem('items', JSON.stringify(cat));
-    $("#cartItems").html(cat.length)
+    $("#cartItems").html(cat.length);
 };
