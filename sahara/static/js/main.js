@@ -22,6 +22,7 @@ const search = (keyword) => {
             toggle_search();
             $(".sl").css('display', 'flex');
             $(".sl__plist-box").empty(); // clear previous search results
+            $(".sl__plist__pnr-num").text(data.results.length);
             if (!data.results.length) {
                 let $msg = `
                     <div style="
@@ -44,6 +45,7 @@ const search = (keyword) => {
                 if (i == 0)
                     selectProduct($cart[0]);
             });
+            $("sl__plist__pnr-num").text(data.results.length);
             $(".sl__plist-box").removeClass("flex-content-center");
             $(".sl__plist__pcard:first").addClass('active');
         })
