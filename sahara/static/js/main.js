@@ -16,14 +16,14 @@ button.addEventListener("click", openMenu);
 let close = document.querySelector(".times");
 close.addEventListener("click", closeMenu);
 
-const search = (keyword) => {
-    $.get("/search", { "keyword": keyword })
+const search = (keyword, page=1, toggle=true) => {
+    $.get("/search", { "keyword": keyword, 'page': page })
         .done((data) => {
-            toggle_search();
+            (toggle && toggle_search());
             $(".sl").css('display', 'flex');
             $(".sl__plist-box").empty(); // clear previous search results
-            $(".sl__plist__pnr-num").text(data.results.length);
-            if (!data.results.length) {
+            $(".sl__plist__pnr-num").text(data.num_products);
+            if (!data.num_products) {
                 let $msg = new TemplateFormatter(T_product_notfound_box, {
                     msg: "محصولی یافت نشد"
                 }).getJqueryElement();
@@ -44,6 +44,20 @@ const search = (keyword) => {
             $("sl__plist__pnr-num").text(data.results.length);
             $(".sl__plist-box").removeClass("flex-content-center");
             $(".sl__plist__pcard:first").addClass('active');
+            // clear previous paginators
+            $(".sl__plist__paginator-list").empty();
+            for (let i=1; i<=data.num_pages; i++) {
+                let $paginator = new TemplateFormatter(T_paginator, {
+                    active: i==data.page_number? "active": "",
+                    page_number: i,
+                }).getJqueryElement();
+                $paginator.click(event => {
+                    // when user clicks on the paginator get the relavant page
+                    event.preventDefault();
+                    search(keyword, Number.parseInt(event.target.dataset.pagenum), false);
+                });
+                $(".sl__plist__paginator-list").append($paginator);
+            }
         })
         .fail(() => {
             console.log("fail");
