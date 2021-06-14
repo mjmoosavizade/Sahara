@@ -9,7 +9,7 @@ from django.db.models import Q
 def index(request):
     categories = Category.objects.filter(show_in_homepage=True)
     products = Product.objects.filter(show_in_homepage=True)
-    sample_products = Product.objects.all()[:10]
+    sample_products = Product.objects.most_visited(10)
     context = {
         'categories': categories,
         'products': products,
