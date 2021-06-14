@@ -17,7 +17,7 @@ let close = document.querySelector(".times");
 close.addEventListener("click", closeMenu);
 
 const search = (keyword, page=1, toggle=true) => {
-    $.get("/search", { "keyword": keyword, 'page': page })
+    $.get("/search", { "keyword": keyword, "page": page })
         .done((data) => {
             (toggle && toggle_search());
             $(".sl").css('display', 'flex');
@@ -143,30 +143,6 @@ const searchMostVisitedProducts = keyword => {
         $("#nfound-box").fadeOut(300);
     }
 }
-$("#mvs-search-btn").click(event => {
-    event.preventDefault();
-    searchMostVisitedProducts($("#mvs-search-input").val());
-});
-$("#mvs-search-input").keypress(event => {
-    if (event.keycode == 13) {
-        searchMostVisitedProducts($("#mvs-search-input").val());
-    }
-});
-$("#mvs-search-input").keyup(event => {
-    console.log(event.target.value == "");
-    if (event.target.value == "") {
-        console.log("executed");
-        $(".mvp-name").each((i, product) => {
-            console.log(product);
-            $(product).parent().fadeIn(300);
-        });
-    }
-});
-
-$('#navSearch').submit(search_hanlder);
-$('#search-btn').click(search_hanlder);
-$('.sl').click(search_hanlder);
-$('.sl-box').click(event=>event.stopPropagation());
 
 const addToCart = (slug, qty) => {
     cat = JSON.parse(localStorage.getItem('items'));
@@ -201,3 +177,43 @@ const highlightNavbarLink = (item_id) => {
     navlink.children(".nav__item").addClass("active");
     navlink.siblings().children(".nav__item").removeClass("active");
 };
+
+$(document).ready(() => {
+    $('.sl__plist-box').on('click', '.sl__plist__pcard', function(e) {
+        selectProduct(e.currentTarget);
+    });
+    $(".sl-close").click(function(){
+        toggle_search();
+    });
+    
+    $("#keyword").click(event => {
+        const search_input = event.target;
+        search_input.focus();
+        search_input.select();
+    });
+
+    $("#mvs-search-btn").click(event => {
+        event.preventDefault();
+        searchMostVisitedProducts($("#mvs-search-input").val());
+    });
+    $("#mvs-search-input").keypress(event => {
+        if (event.keycode == 13) {
+            searchMostVisitedProducts($("#mvs-search-input").val());
+        }
+    });
+    $("#mvs-search-input").keyup(event => {
+        console.log(event.target.value == "");
+        if (event.target.value == "") {
+            console.log("executed");
+            $(".mvp-name").each((i, product) => {
+                console.log(product);
+                $(product).parent().fadeIn(300);
+            });
+        }
+    });
+    
+    $('#navSearch').submit(search_hanlder);
+    $('#search-btn').click(search_hanlder);
+    $('.sl').click(search_hanlder);
+    $('.sl-box').click(event=>event.stopPropagation());
+});

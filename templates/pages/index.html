@@ -221,19 +221,6 @@
 		$("#actionSearch").click(function(){
 			search($("#actionSearchInput").val())
 		});
-		
-		$('.sl__plist-box').on('click', '.sl__plist__pcard', function(e) {
-            selectProduct(e.currentTarget);
-        });
-		$(".sl-close i").click(function(){
-            toggle_search();
-        });
-		
-        $("#keyword").click(event => {
-            const search_input = event.target;
-            search_input.focus();
-            search_input.select();
-        });
     });
 </script>
 {% endblock %}
