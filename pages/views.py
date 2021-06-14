@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from categories.models import Category
-from products.models import Product
+from products.models import Product, Brand
 from django.http import JsonResponse
 from django.core.paginator import Paginator
 from django.db.models import Q
@@ -10,10 +10,12 @@ def index(request):
     categories = Category.objects.filter(show_in_homepage=True)
     products = Product.objects.filter(show_in_homepage=True)
     sample_products = Product.objects.most_visited(10)
+    brands = Brand.objects.filter(show_in_homepage=True)
     context = {
         'categories': categories,
         'products': products,
         'sample_products': sample_products,
+        'brands': brands
     }
 
     return render(request, 'pages/index.html', context)

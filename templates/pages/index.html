@@ -32,6 +32,22 @@
         </div>
         {% endfor %}
     </div>
+    <div class="plist-title" style="margin:auto">{% trans 'برند ها' %}</div>
+    <div class="plist-hr" style="margin:auto"></div>
+    <div class="cat__brands">
+        <div style="width: 100%; margin: 30px 0;" 
+        data-flickity='{"groupCells": true, "autoPlay": 3000}'>
+            {% for brand in brands %}
+            <a href="#" class="cat__brands__list__item">
+                <div class="cat__brands__list__item-box">
+                    <div class="cat__brands__list__item-img">
+                        <img src="{{ brand.logo.url }}" alt="">
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
     <!-- Crasouel Product List -->
     <div class="cplist">
         <div class="plist-title">{% trans 'stock products' %}</div>

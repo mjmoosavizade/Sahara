@@ -31,7 +31,9 @@
                         <div class="cat__plist__categories__list">
                         {% if categories %}
                         {% for category in categories %}
+                        {% if not category.parent%}
                             <a href="{% url 'categories' %}?category={{category.slug}}&filter={{ filter_on }}" class="cat__plist__categories__list-item active">{{ category.category_title }}</a>
+                        {% endif %}
                         {% endfor %}
                         {% endif %}
                         </div>
