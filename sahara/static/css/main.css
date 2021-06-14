@@ -3253,7 +3253,7 @@ main .cat__plist__card {
 
 @media (min-width: 1200px) {
     main .cat__plist__card {
-        width: 33.33333%;
+        width: 25%;
     }
 }
 
