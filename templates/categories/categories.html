@@ -30,7 +30,7 @@
                         <div class="cat__plist__categories__list">
                         {% if categories %}
                         {% for category in categories %}
-                            <a href="{% url 'categories' %}?category={{category.slug}}" class="cat__plist__categories__list-item active">{{ category.category_title }}</a>
+                            <a href="{% url 'categories' %}?category={{category.slug}}&filter={{ filter_on }}" class="cat__plist__categories__list-item active">{{ category.category_title }}</a>
                         {% endfor %}
                         {% endif %}
                         </div>
@@ -165,7 +165,11 @@
     $(".cat__plist__sb__list-item").click(event => {
         event.preventDefault();
         let new_url = new URL(window.location);
-        new_url.searchParams.set("filter", $(event.target).data("fvalue"));
+        if ($(event.target).hasClass("active")) 
+            // remove the filter if user clicks the active filter
+            new_url.searchParams.delete("filter");
+        else
+            new_url.searchParams.set("filter", $(event.target).data("fvalue"));
         window.location = new_url.href;
     });
 
