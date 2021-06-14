@@ -20,7 +20,18 @@ class Brand(models.Model):
     def __str__(self):
         return self.brand_name
 
+class ProductManager(models.Manager):
+    def most_visited(self, n):
+        """ returns `n` number of most visited products
+        """
+        return (self.order_by("-reviews_count")[:n] if n is not None
+                else self.order_by("reviews_count"))
+
 class Product(models.Model):
+    class Meta:
+        verbose_name = 'محصول'
+        verbose_name_plural = 'محصولات'
+
     class Type(models.TextChoices):
         Stock = "Stock"
         Original = "Original"
@@ -29,6 +40,7 @@ class Product(models.Model):
         Dollar = "$"
         Dirham = "درهم"
 
+    objects = ProductManager()
     category = models.ForeignKey(Category, on_delete = models.DO_NOTHING, verbose_name='دسته بندی')
     product_name = models.CharField(max_length=255, verbose_name='نام محصول')
     description = models.TextField(verbose_name='توضیحات', null=False, blank=True)
@@ -46,7 +58,7 @@ class Product(models.Model):
     in_stock = models.BooleanField(default=True, verbose_name='موجودی')
     tech_spec = models.FileField(upload_to= 'spec/%Y/%m/%d/', blank=True, verbose_name='مشخصات محصول')
     show_in_homepage = models.BooleanField(default=False, verbose_name='نمایش در لندینگ')
-
+    reviews_count = models.IntegerField(default=0, null=True, editable=False)
 
     @property
     def all_categories(self):
@@ -56,10 +68,10 @@ class Product(models.Model):
             categories.append(current_category)
             current_category = current_category.parent
         return categories
-    
-    class Meta:
-        verbose_name = 'محصول'
-        verbose_name_plural = 'محصولات'
+
+    def increase_review(self):
+        self.reviews_count+=1
+        self.save()
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.product_name, allow_unicode=True)
