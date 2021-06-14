@@ -3817,6 +3817,18 @@ main .cat__plist__paginator-list {
     min-height: 300px;
 }
 
+.flex {
+    display: flex;
+}
+
+.flex.row {
+    flex-direction: row;
+}
+
+.flex.space-between {
+    justify-content: space-between;
+}
+
 .sl__pdetail-box {
     position: relative;
 }
@@ -3848,4 +3860,27 @@ main .cat__plist__paginator-list {
 
 .carousel {
     margin-bottom: 100px;
+}
+
+.category-tree-expand {
+    text-align: center;
+    height: 20px;
+    width: 20px;
+    border: 1px solid #283d60;
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.23;
+}
+
+.category-link a {
+    display: block;
+    margin: 0;
+    padding: 0;
+    margin-right: 15px;
+}
+
+.category-tree {
+    margin-right: 30px;
 }

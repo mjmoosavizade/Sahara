@@ -30,11 +30,23 @@
                         <div class="cat__plist__categories-title">{% trans 'دسته بندی ها' %}</div>
                         <div class="cat__plist__categories__list">
                         {% if categories %}
-                        {% for category in categories %}
-                        {% if not category.parent%}
-                            <a href="{% url 'categories' %}?category={{category.slug}}&filter={{ filter_on }}" class="cat__plist__categories__list-item active">{{ category.category_title }}</a>
-                        {% endif %}
-                        {% endfor %}
+                            {% for category in categories %}
+                                {% if not category.parent%}
+                                    <div class="category-tree"
+                                    {% if category.children.all|length %} data-has-children="true" {% endif %}>
+                                        <div class="category-link flex row">
+                                            <button
+                                            class="category-tree-expand {% if not category.children.all|length %}disabled{% endif %}">+
+                                            </button><a href="{% url 'categories' %}?category={{category.slug}}&filter={{ filter_on }}" class="cat__plist__categories__list-item active">{{ category.category_title }}</a>
+                                        </div>
+                                        {% if category.children.all|length%}
+                                            {% with category.children.all as categories %}
+                                                {% include "categories/category_tree.html"%}
+                                            {% endwith %}
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
                         {% endif %}
                         </div>
                     </div>
@@ -165,6 +177,12 @@
         $filter_el.siblings().removeClass("active");
     }
 
+    const expandCategories = () => {
+        $(".category-tree[data-has-children] > .category-link > button").click(event => {
+            $(event.currentTarget).parent().parent().find("> .category-tree").fadeToggle(300);
+        });
+    }
+
     $(".cat__plist__sb__list-item").click(event => {
         event.preventDefault();
         let new_url = new URL(window.location);
@@ -177,5 +195,6 @@
     });
 
     highlihgtFilter();
+    expandCategories();
 </script>
 {% endblock extra_scripts %}
