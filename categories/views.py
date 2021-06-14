@@ -23,7 +23,7 @@ def categories(request):
     brands = Brand.objects.filter(show_in_homepage = True)
     
 
-    paginator = Paginator(products, 1)
+    paginator = Paginator(products, 20)
     page = request.GET.get('page')
     paged_products =  paginator.get_page(page)
 
