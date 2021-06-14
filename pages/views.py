@@ -2,7 +2,7 @@ from django.shortcuts import render
 from categories.models import Category
 from products.models import Product
 from django.http import JsonResponse
-from django.core.serializers import serialize
+from django.core.paginator import Paginator
 from django.db.models import Q
 
 
@@ -22,9 +22,7 @@ def index(request):
 def search(request):
     queryset_product = Product.objects.all()
     keyword = request.GET.get('keyword', False)
-    print (f"keyword = {keyword}")
     if keyword:
-        print ("product has been filterd")
         queryset_product = queryset_product.filter(
             Q(product_name__icontains=keyword)       |
             Q(alternative_name_1__icontains=keyword) |
@@ -33,7 +31,6 @@ def search(request):
             Q(alternative_name_4__icontains=keyword) |
             Q(brand__brand_name__icontains=keyword)  |
             Q(category__category_title__icontains=keyword))
-    print (f"products = {queryset_product}")
     products = []
     for i in queryset_product:
         temp_obj = {}
@@ -80,8 +77,16 @@ def search(request):
         else:
             temp_obj['tech_spec'] = ""
         products.append(temp_obj)
-
-    return JsonResponse({'results': products})
+    paginated_products = Paginator(products, request.GET.get("items_per_page", 15))
+    page_number = int(request.GET.get("page", 1)) # returns page 1 by default
+    paged_products = paginated_products.get_page(page_number)
+    
+    return JsonResponse({
+        'results': paged_products.object_list,
+        'num_pages': paginated_products.num_pages,
+        'page_number': page_number,
+        'num_products': len(products), 
+    })
 
 
 def get_product(request):
