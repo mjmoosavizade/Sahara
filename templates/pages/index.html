@@ -81,7 +81,7 @@
                 </thead>
                 <tbody>
                     {% for sample_product in sample_products %}
-                    <tr>
+                    <tr style="margin: 50px 0;">
                         <td>{% if sample_product.product_photo %}<img src="{{ sample_product.product_photo.url }}" alt="">{% endif %}</td>
                         <td class="mvp-name">{{ sample_product.product_name }}</td>
                         <td>{{ sample_product.brand }}</td>
@@ -177,7 +177,7 @@
 						<!-- Product Number Result -->
 						<div class="sl__plist__pnr">
 							<div class="sl__plist__pnr-title">تعداد محصولات جستوجو شده</div>
-							<div class="sl__plist__pnr-num">25</div>
+							<div class="sl__plist__pnr-num"></div>
 						</div>
 						<div class="scroll">
 							<div class="sl__plist-box">
