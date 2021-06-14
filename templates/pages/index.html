@@ -14,26 +14,23 @@
     </div>
 </div>
 <main class="inner-container">
-    <!-- Product List -->
-    <div class="plist">
-        <div class="plist-title">{% trans 'دسته بندی محصولات' %} </div>
-        <div class="plist-hr"></div>
-        <div class="plist-box">
-        
-            {% for category in categories %}
-            <div class="pcard">
-                <div class="pcard-box">
-                    <div class="pcard-img">
-                        {% if category.category_image %}
-                        <img src="{{ category.category_image.url }}" alt="**">
-                        {% endif %}
-                    </div>
-                    <a href="{% url 'categories' %}?category={{ category.slug }}" class="pcard-link">{% trans 'مشاهده محصولات' %}</a>
+    <div class="plist-title" style="margin:auto;"> دسته بندی ها </div>
+    <div class="plist-hr" style="margin:auto;"></div>
+
+    <div class="carousel" data-flickity='{"groupCells": true, "autoPlay": 3000}'>
+        {% for category in categories %}
+        <div class="pcard">
+            <div class="pcard-box">
+                <div class="pcard-img">
+                    {% if category.category_image %}
+                    <img src="{{ category.category_image.url }}" alt="**">
+                    {% endif %}
                 </div>
-                <div class="pcard-title dec c-red">{{ category.category_title }}</div>
+                <a href="{% url 'categories' %}?category={{ category.slug }}" class="pcard-link">{% trans 'مشاهده محصولات' %}</a>
             </div>
-            {% endfor %}
+            <div class="pcard-title dec c-red">{{ category.category_title }}</div>
         </div>
+        {% endfor %}
     </div>
     <!-- Crasouel Product List -->
     <div class="cplist">
