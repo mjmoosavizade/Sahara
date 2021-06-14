@@ -10,7 +10,7 @@
                 data-flickity='{"groupCells": true, "autoPlay": 3000}'>
                     {% for brand in brands %}
                     {% if brand.show_in_homepage %}
-                    <a href="#" class="cat__brands__list__item">
+                    <a href="{% url 'categories' %}?page={{page_number}}&category={{current_category}}&filter={{filter_on}}&brand={{brand.slug}}" class="cat__brands__list__item">
                         <div class="cat__brands__list__item-box">
                             <div class="cat__brands__list__item-img">
                                 <img src="{{ brand.logo.url }}" alt="">
@@ -37,7 +37,7 @@
                                         <div class="category-link flex row">
                                             <button
                                             class="category-tree-expand {% if not category.children.all|length %}disabled{% endif %}">+
-                                            </button><a href="{% url 'categories' %}?category={{category.slug}}&filter={{ filter_on }}" class="cat__plist__categories__list-item active">{{ category.category_title }}</a>
+                                            </button><a href="{% url 'categories' %}?page={{page_number}}&category={{category.slug}}&filter={{filter_on}}&brand={{brand_name}}">{{ category.category_title }}</a>
                                         </div>
                                         {% if category.children.all|length%}
                                             {% with category.children.all as categories %}
@@ -152,7 +152,7 @@
                             {% if products.number == i %}
                             <a class="cat__plist__paginator-item active">{{ i }}</a>
                             {% else %}
-                            <a href="?page={{i}}&category={{current_category}}&filter={{filter_on}}" class="cat__plist__paginator-item">{{ i }}</a>
+                            <a href="?page={{i}}&category={{current_category}}&filter={{filter_on}}&brand={{brand_name}}" class="cat__plist__paginator-item">{{ i }}</a>
                             {% endif %}
                             {% endfor %}
                         </div>
@@ -179,8 +179,11 @@
 
     const expandCategories = () => {
         $(".category-tree[data-has-children] > .category-link > button").click(event => {
-            $(event.currentTarget).parent().parent().find("> .category-tree").fadeToggle(300);
-        });
+            const ctree = $(event.currentTarget).parent().parent().find("> .category-tree");
+            ctree.fadeToggle(300);
+            const text = $(event.currentTarget).text();
+            $(event.currentTarget).text(text == "-"? "+":"-");
+        }); 
     }
 
     $(".cat__plist__sb__list-item").click(event => {

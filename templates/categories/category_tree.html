@@ -7,7 +7,7 @@
     <div class="category-link flex row">
         <button
         class="category-tree-expand {% if not category.children.all|length %}disabled{% endif %}">+
-        </button><a href="{% url 'categories' %}?category={{category.slug}}&filter={{ filter_on }}" class="cat__plist__categories__list-item active">{{ category.category_title }}</a>
+        </button><a href="{% url 'categories' %}?page={{page_number}}&category={{category.slug}}&filter={{filter_on}}&brand={{brand_name}}" class="cat__plist__categories__list-item active">{{ category.category_title }}</a>
     </div>
     {% if category.children.all|length%}
         {% with category.children.all as categories %}

@@ -7,10 +7,17 @@ from products.models import Brand, Product
 
 def categories(request):
     categories_list = Category.objects.all()
-    if (selected_category:=request.GET.get("category", False)):
+    if (selected_category:=request.GET.get("category", False)) and selected_category != "False":
         products = Product.objects.filter(category__slug = selected_category)
     else:
         products = Product.objects.all()
+
+    print ("products are: ",products)
+    brand_name = ""
+    if (brand_slug:=request.GET.get("brand", False)):
+        brand = Brand.objects.get(slug=brand_slug)
+        brand_name = brand.slug
+        products = products.filter(brand=brand)
 
     if (filter_on:=request.GET.get("filter")):
         filter_list = {
@@ -24,8 +31,10 @@ def categories(request):
     
 
     paginator = Paginator(products, 20)
-    page = request.GET.get('page')
+    page = request.GET.get('page', 1)
     paged_products =  paginator.get_page(page)
+
+    print ("products are: ",products)
 
     context = {
         'categories' : categories_list,
@@ -33,7 +42,9 @@ def categories(request):
         'brands' : brands,
         'current_category' : selected_category,
         'filter_on': filter_on,
-        "num_products": len(products)
+        "num_products": len(products),
+        "page_number": page,
+        "brand_name": brand_name
     }
 
     return render(request, 'categories/categories.html', context)
