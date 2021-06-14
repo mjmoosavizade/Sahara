@@ -3845,3 +3845,7 @@ main .cat__plist__paginator-list {
         transform: rotateZ(360deg);
     }
 }
+
+.carousel {
+    margin-bottom: 100px;
+}
