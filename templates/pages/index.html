@@ -28,7 +28,7 @@
                         <img src="{{ category.category_image.url }}" alt="**">
                         {% endif %}
                     </div>
-                    <a href="#" class="pcard-link">{% trans 'مشاهده محصولات' %}</a>
+                    <a href="{% url 'categories' %}?category={{ category.slug }}" class="pcard-link">{% trans 'مشاهده محصولات' %}</a>
                 </div>
                 <div class="pcard-title dec c-red">{{ category.category_title }}</div>
             </div>
