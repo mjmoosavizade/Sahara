@@ -79,10 +79,10 @@
                     <div class="cat__plist__sb">
                         <div class="scroll">
                             <div class="cat__plist__sb-title">{% trans 'مرتب سازی بر اساس:' %}</div>
-                            <div class="cat__plist__sb__list">
-                                <a href="#" class="cat__plist__sb__list-item active">{% trans 'جدیدترین' %}</a>
-                                <a href="#" class="cat__plist__sb__list-item">{% trans 'پر بازدید ترین' %}</a>
-                                <a href="#" class="cat__plist__sb__list-item">{% trans 'موجود ها' %}</a>
+                            <div class="cat__plist__sb__list" data-filter-on={{ filter_on }} id="filter-list">
+                                <a href="#" class="cat__plist__sb__list-item" data-fvalue="newest">{% trans 'جدیدترین' %}</a>
+                                <a href="#" class="cat__plist__sb__list-item" data-fvalue="most-visited">{% trans 'پر بازدید ترین' %}</a>
+                                <a href="#" class="cat__plist__sb__list-item" data-fvalue="in-stock">{% trans 'موجود ها' %}</a>
                                 <a href="#" class="cat__plist__sb__list-item">{% trans 'محبوب ترین' %}</a>
                             </div>
                         </div>
@@ -91,7 +91,7 @@
                         <div class="cat__plist__information">
                             <div class="cat__plist__information-title">leitungen</div>
                             <!-- Product Number -->
-                            <div class="cat__plist__information-pnum">{{ products|length }}{% trans  'کالا جستجو شده' %}</div>
+                            <div class="cat__plist__information-pnum">{{ num_products }} {% trans  'کالا جستجو شده' %}</div>
                         </div>
                         <div class="cat__plist-cards">
                         {% if products %}
@@ -121,7 +121,7 @@
                                         {% if product.alternative_name_4 %}
                                         <div class="cat__plist__card__anl-item">{{ product.alternative_name_4 }}</div>
                                         {% endif %}
-                                        
+                                        <div style="margin-top: 15px;">تعداد مشاهده: {{ product.reviews_count }}</div>
                                     </div>
                                     {% endif %}
                                     <a href="{% url 'product' product.slug %}" class="cat__plist__card-link">{% trans 'اطلاعات بیشتر' %}</a>
@@ -137,7 +137,7 @@
                             {% if products.number == i %}
                             <a class="cat__plist__paginator-item active">{{ i }}</a>
                             {% else %}
-                            <a href="?page={{i}}&category={{current_category}}" class="cat__plist__paginator-item">{{ i }}</a>
+                            <a href="?page={{i}}&category={{current_category}}&filter={{filter_on}}" class="cat__plist__paginator-item">{{ i }}</a>
                             {% endif %}
                             {% endfor %}
                         </div>
@@ -154,5 +154,21 @@
 {% block extra_scripts %}
 <script>
     highlightNavbarLink("nl-categories");
+
+    const highlihgtFilter = () => {
+        const filter = $("#filter-list").data("filter-on");
+        const $filter_el = $(`[data-fvalue="${filter}"]`);
+        $filter_el.addClass("active");
+        $filter_el.siblings().removeClass("active");
+    }
+
+    $(".cat__plist__sb__list-item").click(event => {
+        event.preventDefault();
+        let new_url = new URL(window.location);
+        new_url.searchParams.set("filter", $(event.target).data("fvalue"));
+        window.location = new_url.href;
+    });
+
+    highlihgtFilter();
 </script>
 {% endblock extra_scripts %}
