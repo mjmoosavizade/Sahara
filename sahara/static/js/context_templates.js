@@ -72,3 +72,10 @@ const T_loader = `
     <div class="loader"></div>
 </div>
 `;
+
+// {active}
+const T_paginator = `
+<a href="#" class="sl__plist__paginator-item {active}" data-pagenum="{page_number}">
+    {page_number}
+</a>
+`;
