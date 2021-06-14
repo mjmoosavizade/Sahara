@@ -42,12 +42,12 @@
             <div class="times">
                 <i class='bx bx-x'></i>
             </div>
-            <div class="nav__item-box">
+            <div class="nav__item-box" id="nl-home">
                 <a href="{% url 'index' %}" class="nav__item active">
                     <span>{% trans 'صفحه اصلی' %}</span>
                 </a>
             </div>
-            <div class="nav__item-box">
+            <div class="nav__item-box" id="nl-categories">
                 <a href="{% url 'categories' %}" class="nav__item">
                     <span>{% trans 'برند و محصولات' %}</span>
                 </a>
@@ -179,4 +179,5 @@
 <script src="{% static 'js/context_templates.js' %}"></script>
 <script src="{% static 'js/main.js' %}"></script>
 
+{% block extra_scripts %}{% endblock extra_scripts %}
 </html>

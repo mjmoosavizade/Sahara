@@ -194,3 +194,10 @@ const addToCart = (slug, qty) => {
     localStorage.setItem('items', JSON.stringify(cat));
     $("#cartItems").html(cat.length);
 };
+
+const highlightNavbarLink = (item_id) => {
+    if (!item_id) return;
+    const navlink = $(`#${item_id}`);
+    navlink.children(".nav__item").addClass("active");
+    navlink.siblings().children(".nav__item").removeClass("active");
+};
