@@ -6,7 +6,6 @@ class TemplateFormatter {
 
     format(context) {
         for (const key in context) {
-            console.log(`{${key}}`)
             this.element_template = this.element_template.replaceAll(`{${key}}`, context[key]);
         }
     }
@@ -78,4 +77,9 @@ const T_paginator = `
 <a href="#" class="sl__plist__paginator-item {active}" data-pagenum="{page_number}">
     {page_number}
 </a>
+`;
+
+// {val} {txt}
+const T_select_opt = `
+<option value="{val}">{txt}</option>
 `;

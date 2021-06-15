@@ -79,14 +79,14 @@
                     <input type="text" placeholder="{% trans 'ایمیل'  %}*">
                 </div>
                 <div class="form-control">
-                    <select disabled>
-              <option value="null">{% trans '* استان' %}</option>
-            </select>
+                    <select id="provinces">
+                        <option value="null">{% trans '* استان' %}</option>
+                    </select>
                 </div>
                 <div class="form-control">
-                    <select disabled>
-              <option value="null">{% trans '* شهر' %}</option>
-            </select>
+                    <select id="states">
+                        <option value="null">{% trans '* شهر' %}</option>
+                    </select>
                 </div>
                 <div class="cart__form-btns">
                     <button type="submit" class="btn-green-fill">{% trans 'ارسال فرم خرید' %}</button>
@@ -101,8 +101,31 @@
     </div>
 </main>
 
+{{ province_table|json_script:"province-table"}}
+
 <Script>
     $(document).ready(function() {
+
+        const province_table = JSON.parse(document.getElementById("province-table").textContent);
+        const $province_select = $("#provinces");
+        const $cities_select = $("#states");
+        for (const province in province_table) {
+            let $province_opt = new TemplateFormatter(T_select_opt, {
+                val: province,
+                txt: province
+            }).getJqueryElement();
+            $province_select.append($province_opt);
+        }
+        $province_select.change(event => {
+            $cities_select.empty();
+            for (const city of province_table[event.currentTarget.value]) {
+                let $city_opt = new TemplateFormatter(T_select_opt, {
+                    val: city,
+                    txt: city
+                }).getJqueryElement();
+                $cities_select.append($city_opt);
+            }
+        })
 
         cat = JSON.parse(localStorage.getItem('items'));
         $("tbody").empty();
