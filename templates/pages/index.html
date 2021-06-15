@@ -98,7 +98,7 @@
                         <td>{% if sample_product.product_photo %}<img src="{{ sample_product.product_photo.url }}" alt="">{% endif %}</td>
                         <td class="mvp-name">{{ sample_product.product_name }}</td>
                         <td>{{ sample_product.brand }}</td>
-                        <td>{% if sample_product.price %}{{ sample_product.price }}{% else %}-{% endif %}</td>
+                        <td>{% if sample_product.price %}{{sample_product.currency}}{{ sample_product.price }}{% else %}-{% endif %}</td>
                         <td><button class="add_to_cart" onclick="addToCart('{{ sample_product.slug }}', '{{ sample_product.product_name }}')">{% trans 'افزودن به سبد خرید' %}</button></td>
                     </tr>
                     {% endfor %}

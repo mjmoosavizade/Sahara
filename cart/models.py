@@ -11,6 +11,7 @@ class Order(models.Model):
         max_length=255, verbose_name='شماره تماس', null=False)
     customer_province = models.CharField(max_length=255, verbose_name='استان')
     customer_city = models.CharField(max_length=255, verbose_name='شهر')
+    is_delivered = models.BooleanField(default=False, null=True, verbose_name="تحویل داده شده؟")
 
     class Meta:
         verbose_name = 'سفارش'
@@ -29,7 +30,7 @@ class Order(models.Model):
         return total
 
     def __str__(self):
-        return self.customer_fname
+        return f"{self.customer_fname} {self.customer_lname}, {self.customer_phone} [{'تحویل داده شده' if self.is_delivered else 'تحویل داده نشده'}]"
 
 
 class OrderProduct(models.Model):

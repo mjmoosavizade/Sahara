@@ -44,8 +44,8 @@
                     <div>ریال</div>
                 </div>
                 <div>
-                    <div id="c-dollar">0</div>
                     <div id="c-derham">0</div>
+                    <div id="c-dollar">0</div>
                     <div id="c-rial">0</div>
                 </div>
             </div>
@@ -90,6 +90,62 @@
 {{ province_table|json_script:"province-table"}}
 
 <Script>
+    const updateValuesInLocalStorage = (slug, new_qty) => {
+        const cart_items = JSON.parse(localStorage.getItem("shopping_cart"));
+        for (const item in cart_items) {
+            if (cart_items[item].slug == slug) {
+                cart_items[item].qty = new_qty;
+            }
+        }
+        localStorage.setItem("shopping_cart", JSON.stringify(cart_items));
+    };
+
+    const calculateFinalPrice = () => {
+        let total_rial=0, total_dollar=0, total_derham=0;
+        $("input[data-base]").each((i, input_field) => {
+            const price = input_field.value * input_field.dataset.base;
+            switch (input_field.dataset.currency) {
+                case "ًریال":
+                    total_rial += price
+                    break;
+                case "درهم":
+                    total_dollar += price
+                    break;
+                case "$":
+                    total_derham += price
+                    break;
+            }
+            updateValuesInLocalStorage(input_field.dataset.slug, input_field.value);
+            console.log(price);
+        });
+        $("#c-rial").text(total_rial);
+        $("#c-derham").text(total_derham);
+        $("#c-dollar").text(total_dollar);
+    };
+
+    const changePrice = (field, opr, amount) => {
+        if (!field || !opr || !amount) return;
+        console.log(field, opr, amount);
+        let previous_val = 0;
+        switch (opr) {
+            case "inc":
+                previous_val = +$(field).val();
+                $(field).val(previous_val + amount)
+                break;
+            case "dec":
+                previous_val = +$(field).val();
+                if (previous_val <= 1) return;
+                $(field).val(previous_val - amount);
+                break;
+            default:
+                throw new Error(
+                    "operation is not supported, use eaither 'inc' or 'dec'"
+                    +"to increase or decrease the value"
+                );
+        }
+        calculateFinalPrice();
+    }
+
     $(document).ready(function() {
 
         function sortSelect(selElem) {
@@ -136,17 +192,6 @@
         for (const item of cart_items) {
             getProduct(item.slug).then(data => {
                 console.log(data.currency)
-                switch (data.currency) {
-                    case "ًریال":
-                        $("#c-rial").text(Number.parseFloat($("#c-rial").text()) + Number.parseFloat(data.price))
-                        break;
-                    case "درهم":
-                        $("#c-derham").text(Number.parseFloat($("#c-derham").text()) + Number.parseFloat(data.price))
-                        break;
-                    case "$":
-                        $("#c-dollar").text(Number.parseFloat($("#c-dollar").text()) + Number.parseFloat(data.price))
-                        break;
-                }
                 $("#psection").append(`<tr class="product" style="margin: 30px;">
                 <td class="product-img">
                   <img src="${data.product_photo}" alt="">
@@ -156,11 +201,11 @@
                 <td class="product-price">${data.price}${data.currency}</td>
                 <td class="product-order-number">
                   <div class="d-flex num-product">
-                    <input type="text" class="input-green-border num-product-input" value="${item.qty}">
-                    <button class="btn-green-fill num-product-add">
+                    <input type="text" class="input-green-border num-product-input" value="${item.qty}" data-base="${data.price}" data-currency="${data.currency}" data-slug="${data.slug}">
+                    <button class="btn-green-fill num-product-add" onclick="changePrice($(this).siblings('input'), 'inc', 1);">
                       <i class='bx bx-message-square-add'></i>
                     </button>
-                    <button class="btn-red-fill num-product-remove">
+                    <button class="btn-red-fill num-product-remove" onclick="changePrice($(this).siblings('input'), 'dec', 1);">
                       <i class='bx bx-message-square-minus'></i>
                     </button>
                   </div>
@@ -172,7 +217,9 @@
                     </a>
                   </div>
                 </td>
-              </tr>`)});
+              </tr>`)
+              calculateFinalPrice();
+            });
         }
         let items = JSON.stringify(localStorage.getItem('shopping_cart'))
         let input = $("<input>")
@@ -182,45 +229,6 @@
         $("#cartForm").submit(event => {
             removeItemsFromCart();
         });
-
-       /* cat = JSON.parse(localStorage.getItem('items'));
-        $("tbody").empty();
-        for (i in cat) {
-            getProduct(Object.keys(cat[i])[0]).then(data => {
-                $("tbody").append(`<tr class="product">
-                <td class="product-img">
-                  <img src="${data.product_photo}" alt="">
-                </td>
-                <td class="product-description">${data.product_name}</td>
-                <td class="product-code">${data.brand}</td>
-                <td class="product-price">${data.price}${data.currency}</td>
-                <td class="product-order-number">
-                  <div class="d-flex num-product">
-                    <input type="text" class="input-green-border num-product-input" value="1">
-                    <button class="btn-green-fill num-product-add">
-                      <i class='bx bx-message-square-add'></i>
-                    </button>
-                    <button class="btn-red-fill num-product-remove">
-                      <i class='bx bx-message-square-minus'></i>
-                    </button>
-                  </div>
-                </td>
-                <td>
-                  <div class="delete">
-                    <a href="#" class="img">
-                      <img src="./assets/img/delete.png" alt="">
-                    </a>
-                  </div>
-                </td>
-              </tr>`);
-            });
-        }
-        let items = JSON.stringify(localStorage.getItem('items'))
-        let input = $("<input>")
-            .attr("type", "hidden")
-            .attr("name", "items").val(items);
-        console.log($(input).val());
-        $("#cartForm").append(input);*/
     });
 </script>
 
