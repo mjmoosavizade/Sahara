@@ -1,3 +1,4 @@
+from sahara.settings import EMAIL_ADMINS_LIST, EMAIL_HOST_USER
 from products.models import Product
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -8,6 +9,7 @@ from functools import lru_cache
 from django.conf import settings
 from os.path import join as join_path
 from .models import Order, OrderProduct
+from django.core.mail import send_mail
 
 def _city_fmt(json_data):
     province_table = {}
@@ -52,7 +54,26 @@ def cart(request):
             print (item)
             product = Product.objects.get(slug=item["slug"])
             OrderProduct.objects.create(product=product, order=order, quantity=item["qty"]).save()
-        return HttpResponse("سفارش با موفقیت ثبت شد")
+
+        send_mail("سفارش جدید رسید",
+            (
+                "آقای {} با شماره تلفن {} سفارشی جدید در وبسایت ثبت کرد\n"
+                "جهت برسی سفارش به سایت ادمین مراجعه نمایید"
+            ).format(firstname + " " + lastname, phone),
+            EMAIL_HOST_USER, # username
+            [email], # reciepients
+            False # don't fail silently
+        )
+        send_mail("سفارش شما ثبت شد",
+            (
+                "سلام آقای {} وقت بخیر؛ سفارش شما با موفقیت در سایت ثبت شد\n"
+                "همکاران ما در اسرع وقت پیگیری و با شما تماس حاصل خواهند کرد"
+            ).format(firstname + " " + lastname),
+            EMAIL_HOST_USER, # username
+            EMAIL_ADMINS_LIST, # reciepients
+            False # don't fail silently
+        )
+        return render(request, 'cart/success.html')
     else:
         print('checl')
         province_and_cities = _city_fmt(_load_json_file("cart/resources/citiesandstates.json"))
