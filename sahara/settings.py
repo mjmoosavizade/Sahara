@@ -1,8 +1,24 @@
 import os
+from json import load
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+try:
+    EMAIL_SETTINGS = load(open(os.path.join(BASE_DIR, "email.config.json")))
+except FileNotFoundError as error:
+    print ("you should create a `email.config.json` in the root directory")
+    raise error
+
+#DataFlair
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+# * you should configure these options in your email.config.json
+EMAIL_HOST_USER = EMAIL_SETTINGS["username"] # str
+EMAIL_HOST_PASSWORD = EMAIL_SETTINGS["password"] # str
+EMAIL_ADMINS_LIST = EMAIL_SETTINGS["admin_emails"] # list
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
