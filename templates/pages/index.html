@@ -55,7 +55,7 @@
         
         <div class="cplist-box">
         {% for product in products %}
-            <a href="#" class="pcard">
+            <a href="/products/{{ product.slug }}" class="pcard">
                 <div class="pcard-box">
                     <div class="pcard-img">
                     {% if product.product_photo %}
