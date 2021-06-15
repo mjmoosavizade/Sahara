@@ -37,7 +37,7 @@ def categories(request):
         if filter_on in filter_list.keys():
             products = filter_list[filter_on]
     brands = Brand.objects.filter(show_in_homepage = True)
-    
+
 
     paginator = Paginator(products, 20)
     page = request.GET.get('page', 1)

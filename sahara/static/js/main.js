@@ -144,32 +144,47 @@ const searchMostVisitedProducts = keyword => {
     }
 }
 
-const addToCart = (slug, qty) => {
-    cat = JSON.parse(localStorage.getItem('items'));
-    if (!cat) {
-        cat = [];
-        item = {};
-        item[slug] = qty;
-        cat.push(item)
-    } else {
-        found = false;
-        for (i in cat) {
-            if (Object.keys(cat[i])[0] == slug) {
-                item = {};
-                item[slug] = qty;
-                cat[i] = item;
-                found = true;
-            }
-        }
-        if (!found) {
-            item = {};
-            item[slug] = qty;
-            cat.push(item);
+const showNumItems = () => {
+    const total_items = localStorage.getItem("total_items") || 0;
+    $("#cartItems").text(total_items);
+}
+
+const addToCart = (slug, name, qty=1) => {
+    // it is going to store an array of slugs
+    let cart_items = JSON.parse(localStorage.getItem("shopping_cart") || "[]");
+    let total_items = JSON.parse(localStorage.getItem("total_items") || 0);
+    if (cart_items == "") {
+        cart_items = [];
+        localStorage.setItem("shopping_cart", JSON.stringify(cart_items));
+    }
+    let previously_in_list = false;
+    for (const item of cart_items) {
+        if (item.slug == slug) {
+            item.qty++;
+            previously_in_list = true;
+            alert(`یک '${name}' دیگر نیز به سبد خرید شما اضافه گشت`)
+            break;
         }
     }
-    localStorage.setItem('items', JSON.stringify(cat));
-    $("#cartItems").html(cat.length);
+    if (!previously_in_list) {
+        cart_items.push({slug, name, qty});
+        alert(`${name} به سبد خرید اضافه شد`);
+    }
+    total_items++;
+    localStorage.setItem("shopping_cart", JSON.stringify(cart_items));
+    localStorage.setItem("total_items", total_items);
+    showNumItems();
+    // get item slugs
+    // store them in localStorage or sessionStorage
+    // show the user a message
+    // on cart.html the list will be returned through a request from the server
+    // items will be displayed in the page
 };
+
+const removeItemsFromCart = () => {
+    localStorage.removeItem("shopping_cart");
+    window.location.reload();
+}
 
 const highlightNavbarLink = (item_id) => {
     if (!item_id) return;
@@ -216,4 +231,7 @@ $(document).ready(() => {
     $('#search-btn').click(search_hanlder);
     $('.sl').click(search_hanlder);
     $('.sl-box').click(event=>event.stopPropagation());
+
+    // show number of items in shopping cart
+    showNumItems();
 });

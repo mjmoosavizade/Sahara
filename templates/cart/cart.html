@@ -16,39 +16,12 @@
                             <th></th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr class="product">
-                            <td class="product-img">
-                                <img src="./assets/img/siemens_01_ovladacie_panely-removebg-preview.png" alt="">
-                            </td>
-                            <td class="product-description">Lorem ipsum, dolor sit amet consectetur adipisicing elit</td>
-                            <td class="product-code">88TD063</td>
-                            <td class="product-price">400$</td>
-                            <td class="product-order-number">
-                                <div class="d-flex num-product">
-                                    <input type="text" class="input-green-border num-product-input" value="1">
-                                    <button class="btn-green-fill num-product-add">
-                      <i class='bx bx-message-square-add'></i>
-                    </button>
-                                    <button class="btn-red-fill num-product-remove">
-                      <i class='bx bx-message-square-minus'></i>
-                    </button>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="delete">
-                                    <a href="#" class="img">
-                                        <img src="./assets/img/delete.png" alt="">
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
+                    <tbody id="psection"></tbody>
                 </table>
             </div>
         </div>
         <div class="cart__total">
-            <div class="cart__total-box">
+            {% comment %} <div class="cart__total-box">
                 <div class="cart__total__data gold">
                     <div class="cart__total__data-name">total product:</div>
                     <div class="cart__total__data-value">1590&nbsp;$</div>
@@ -62,35 +35,48 @@
                     <div class="cart__total__data-name">total:</div>
                     <div class="cart__total__data-value">1940&nbsp;$</div>
                 </div>
+            </div> {% endcomment %}
+            <h1>مجموع هزینه های قابل پرداخت</h1>
+            <div class="total_shopping">
+                <div class="headers">
+                    <div>دلار</div>
+                    <div>درهم</div>
+                    <div>ریال</div>
+                </div>
+                <div>
+                    <div id="c-dollar">0</div>
+                    <div id="c-derham">0</div>
+                    <div id="c-rial">0</div>
+                </div>
             </div>
         </div>
         <div class="cart__form">
             <form action="{% url 'cart' %}" id="cartForm" method="POST" class="cart__form-box">
                 <div class="form-control">
-                    <input type="text" placeholder="{% trans 'نام' %}*">
+                    <input name="firstname" type="text" placeholder="{% trans 'نام' %}*">
                 </div>
                 <div class="form-control">
-                    <input type="text" placeholder="{% trans 'نام خانوادگی'  %}*">
+                    <input name="lastname" type="text" placeholder="{% trans 'نام خانوادگی'  %}*">
                 </div>
                 <div class="form-control">
-                    <input type="text" placeholder="{% trans 'شماره تماس'  %}*">
+                    <input name="phone" type="text" placeholder="{% trans 'شماره تماس'  %}*">
                 </div>
                 <div class="form-control">
-                    <input type="text" placeholder="{% trans 'ایمیل'  %}*">
+                    <input name="email" type="text" placeholder="{% trans 'ایمیل'  %}*">
                 </div>
                 <div class="form-control">
-                    <select id="provinces">
+                    <select id="provinces" name="province">
                         <option value="null">{% trans '* استان' %}</option>
                     </select>
                 </div>
                 <div class="form-control">
-                    <select id="states">
+                    <select id="states" name="city">
                         <option value="null">{% trans '* شهر' %}</option>
                     </select>
                 </div>
                 <div class="cart__form-btns">
                     <button type="submit" class="btn-green-fill">{% trans 'ارسال فرم خرید' %}</button>
-                    <button type="reset" class="btn-red-border">{% trans 'حذف همه' %}</button>
+                    <button type="reset" class="btn-red-border" onclick="removeItemsFromCart();">{% trans 'حذف همه' %}</button>
                 </div>
                 <!-- Error List -->
                 <div class="cart__form__elist">
@@ -146,7 +132,58 @@
             sortSelect(document.getElementById("states"));
         })
 
-        cat = JSON.parse(localStorage.getItem('items'));
+        let cart_items = JSON.parse(localStorage.getItem("shopping_cart"));
+        for (const item of cart_items) {
+            getProduct(item.slug).then(data => {
+                console.log(data.currency)
+                switch (data.currency) {
+                    case "ًریال":
+                        $("#c-rial").text(Number.parseFloat($("#c-rial").text()) + Number.parseFloat(data.price))
+                        break;
+                    case "درهم":
+                        $("#c-derham").text(Number.parseFloat($("#c-derham").text()) + Number.parseFloat(data.price))
+                        break;
+                    case "$":
+                        $("#c-dollar").text(Number.parseFloat($("#c-dollar").text()) + Number.parseFloat(data.price))
+                        break;
+                }
+                $("#psection").append(`<tr class="product" style="margin: 30px;">
+                <td class="product-img">
+                  <img src="${data.product_photo}" alt="">
+                </td>
+                <td class="product-description">${data.product_name}</td>
+                <td class="product-code">${data.brand}</td>
+                <td class="product-price">${data.price}${data.currency}</td>
+                <td class="product-order-number">
+                  <div class="d-flex num-product">
+                    <input type="text" class="input-green-border num-product-input" value="${item.qty}">
+                    <button class="btn-green-fill num-product-add">
+                      <i class='bx bx-message-square-add'></i>
+                    </button>
+                    <button class="btn-red-fill num-product-remove">
+                      <i class='bx bx-message-square-minus'></i>
+                    </button>
+                  </div>
+                </td>
+                <td>
+                  <div class="delete">
+                    <a href="#" class="img">
+                      <img src="./assets/img/delete.png" alt="">
+                    </a>
+                  </div>
+                </td>
+              </tr>`)});
+        }
+        let items = JSON.stringify(localStorage.getItem('shopping_cart'))
+        let input = $("<input>")
+            .attr("type", "hidden")
+            .attr("name", "items").val(items);
+        $("#cartForm").append(input);
+        $("#cartForm").submit(event => {
+            removeItemsFromCart();
+        });
+
+       /* cat = JSON.parse(localStorage.getItem('items'));
         $("tbody").empty();
         for (i in cat) {
             getProduct(Object.keys(cat[i])[0]).then(data => {
@@ -183,7 +220,7 @@
             .attr("type", "hidden")
             .attr("name", "items").val(items);
         console.log($(input).val());
-        $("#cartForm").append(input);
+        $("#cartForm").append(input);*/
     });
 </script>
 

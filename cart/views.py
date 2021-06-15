@@ -1,10 +1,13 @@
+from products.models import Product
 from django.shortcuts import render
+from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 from types import SimpleNamespace
 from functools import lru_cache
 from django.conf import settings
 from os.path import join as join_path
+from .models import Order, OrderProduct
 
 def _city_fmt(json_data):
     province_table = {}
@@ -32,9 +35,24 @@ def cart(request):
         province = request.POST.get('province','')
         city = request.POST.get('city','')
         items = request.POST.get('items','')
-        print(items)
-        item_obj = json.loads(items, object_hook=lambda d: SimpleNamespace(**d))
-        print (item_obj)
+        item_obj = json.loads(json.loads(items))
+        print(firstname)
+        print(item_obj)
+        print(type(item_obj))
+        order = Order.objects.create(
+            customer_fname=firstname,
+            customer_lname=lastname,
+            customer_phone=phone,
+            customer_province=province,
+            customer_city=city,
+        )
+        order.save()
+
+        for item in item_obj:
+            print (item)
+            product = Product.objects.get(slug=item["slug"])
+            OrderProduct.objects.create(product=product, order=order, quantity=item["qty"]).save()
+        return HttpResponse("سفارش با موفقیت ثبت شد")
     else:
         print('checl')
         province_and_cities = _city_fmt(_load_json_file("cart/resources/citiesandstates.json"))

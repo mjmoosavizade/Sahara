@@ -38,7 +38,7 @@
         <div style="width: 100%; margin: 30px 0;" 
         data-flickity='{"groupCells": true, "autoPlay": 3000}'>
             {% for brand in brands %}
-            <a href="#" class="cat__brands__list__item">
+            <a href="/categories/?brand={{brand.slug}}" class="cat__brands__list__item">
                 <div class="cat__brands__list__item-box">
                     <div class="cat__brands__list__item-img">
                         <img src="{{ brand.logo.url }}" alt="">
@@ -99,7 +99,7 @@
                         <td class="mvp-name">{{ sample_product.product_name }}</td>
                         <td>{{ sample_product.brand }}</td>
                         <td>{% if sample_product.price %}{{ sample_product.price }}{% else %}-{% endif %}</td>
-                        <td><button class="add_to_cart">{% trans 'افزودن به سبد خرید' %}</button></td>
+                        <td><button class="add_to_cart" onclick="addToCart('{{ sample_product.slug }}', '{{ sample_product.product_name }}')">{% trans 'افزودن به سبد خرید' %}</button></td>
                     </tr>
                     {% endfor %}
                     <tr style="display: none;" id="nfound-box">
