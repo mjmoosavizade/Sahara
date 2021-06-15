@@ -55,10 +55,10 @@
                 <div class="pdetail__controller__btns">
                     <div class="d-flex">
                         <div class="w-50">
-                            <button class="btn-red-fill">{% trans 'افزودن به کالای پروژه' %}</button>
+                            <button class="btn-red-fill" onclick="addToCart('{{ product.slug }}', '{{ product.product_name }}')">{% trans 'افزودن به کالای پروژه' %}</button>
                         </div>
                         <div class="w-50">
-                            <button class="btn-red-border">{% trans 'کالا های انتخابی شما (۰)' %}</button>
+                            <button class="btn-red-border" id="pnumber">{% trans 'کالا های انتخابی شما (۰)' %}</button>
                         </div>
                     </div>
                     <div class="w-100">
