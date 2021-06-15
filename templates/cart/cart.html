@@ -201,7 +201,7 @@
                 <td class="product-price">${data.price}${data.currency}</td>
                 <td class="product-order-number">
                   <div class="d-flex num-product">
-                    <input type="text" class="input-green-border num-product-input" value="${item.qty}" data-base="${data.price}" data-currency="${data.currency}" data-slug="${data.slug}">
+                    <input type="text" class="input-green-border num-product-input" onchange="calculateFinalPrice();" value="${item.qty}" data-base="${data.price}" data-currency="${data.currency}" data-slug="${data.slug}">
                     <button class="btn-green-fill num-product-add" onclick="changePrice($(this).siblings('input'), 'inc', 1);">
                       <i class='bx bx-message-square-add'></i>
                     </button>
