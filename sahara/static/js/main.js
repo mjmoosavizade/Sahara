@@ -147,7 +147,10 @@ const searchMostVisitedProducts = keyword => {
 }
 
 const showNumItems = () => {
-    const total_items = localStorage.getItem("total_items") || 0;
+    let total_items = 0;
+    for (const item of JSON.parse(localStorage.getItem("shopping_cart") || [])) {
+        total_items += +item.qty;
+    };
     $("#cartItems").text(total_items);
     $("#pnumber").text(`مجموع کالا های انتخابی شما (${total_items})`);
 }
@@ -176,9 +179,9 @@ const addToCart = (slug, name, qty=1) => {
         cart_items.push({slug, name, qty});
         alert(`${qty} ${name} به سبد خرید شما اضافه شد`);
     }
-    total_items += qty;
+    // total_items += qty;
     localStorage.setItem("shopping_cart", JSON.stringify(cart_items));
-    localStorage.setItem("total_items", total_items);
+    // localStorage.setItem("total_items", total_items);
     showNumItems();
 };
 
