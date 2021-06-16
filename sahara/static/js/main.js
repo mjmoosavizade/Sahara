@@ -110,6 +110,7 @@ const selectProduct = product_element => {
             product_photo: data.product_photo,
             product_name: data.product_name,
             slug: data.slug,
+            spec: data.tech_spec,
             brand: data.brand,
             alternative_name_1: data.alternative_name_1,
             alternative_name_2: data.alternative_name_2,
@@ -179,11 +180,6 @@ const addToCart = (slug, name, qty=1) => {
     localStorage.setItem("shopping_cart", JSON.stringify(cart_items));
     localStorage.setItem("total_items", total_items);
     showNumItems();
-    // get item slugs
-    // store them in localStorage or sessionStorage
-    // show the user a message
-    // on cart.html the list will be returned through a request from the server
-    // items will be displayed in the page
 };
 
 const removeItemsFromCart = () => {
@@ -215,6 +211,11 @@ const slAddToCard = () => {
     const product_slug = $("[data-pslug]").data("pslug");
     const qty = +$("#pinput").val();
     addToCart(product_slug, product_name, qty);
+}
+
+const downloadSpec = () => {
+    const spec_url = $("[data-spec]").data("spec");
+    window.location = spec_url;
 }
 
 $(document).ready(() => {
