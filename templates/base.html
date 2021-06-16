@@ -91,11 +91,11 @@
 							
 						</div>
 						<div class="sl__pdetail__pnum d-flex num-product">
-							<input type="text" class="input-green-border sl__pdetail__pnum-input num-product-input" value="1" min="1">
-							<button class="btn-green-fill num-product-add sl__pdetail__pnum-add">
+							<input id="pinput" type="text" class="input-green-border sl__pdetail__pnum-input num-product-input" value="1" min="1">
+							<button class="btn-green-fill num-product-add sl__pdetail__pnum-add" onclick="slIncreaseQTY();">
 								<i class='bx bx-message-square-add'></i>
 							</button>
-							<button class="btn-red-fill num-product-remove sl__pdetail__pnum-remove">
+							<button class="btn-red-fill num-product-remove sl__pdetail__pnum-remove" onclick="slDecreaseQTY();">
 								<i class='bx bx-message-square-minus'></i>
 							</button>
 							<span class="sl__pdetail__pnum-text">{% trans 'number of products' %}</span>
@@ -103,7 +103,7 @@
 						<!-- Download Product Information -->
 						<a href="#" class="sl__pdetail-dpi">{% trans "download the product's specification file" %}</a>
 						<!-- Add Product To Cart -->
-						<a href="#" class="sl__pdetail-atc">{% trans 'add to list' %}</a>
+						<a href="#" class="sl__pdetail-atc" onclick="slAddToCard();">{% trans 'add to list' %}</a>
 					</div>
 					<div class="sl__plist">
 						<!-- Product Number Result -->
@@ -118,11 +118,6 @@
 						</div>
 						<div class="sl__plist__paginator">
 							<div class="sl__plist__paginator-list">
-								<a href="#" class="sl__plist__paginator-item">1</a>
-								<a href="#" class="sl__plist__paginator-item active">2</a>
-								<a href="#" class="sl__plist__paginator-item">3</a>
-								<a href="#" class="sl__plist__paginator-item">4</a>
-								<a href="#" class="sl__plist__paginator-item">5</a>
 							</div>
 						</div>
 					</div>
@@ -183,7 +178,7 @@
         window.location = (`/${lang}${path}${window.location.search}`);
     };
 
-    const prefered_lang = localStorage.getItem("plang");
+    const prefered_lang = localStorage.getItem("plang") || "fa";
     if (prefered_lang != window.location.pathname.substr(1, 2)) 
         changeLang(prefered_lang);
 

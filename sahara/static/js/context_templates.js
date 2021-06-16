@@ -34,7 +34,7 @@ const T_product_notfound_box = `
 
 // {product_photo} {product_name} {brand} {alternative_name[1-4]} {stock_class} {original_class}
 // {price} {currency}
-const T_product_details = `<div class="sl__pdetal__informations">
+const T_product_details = `<div class="sl__pdetal__informations" data-pslug="{slug}" data-pname="{product_name}">
 <div class="sl__pdetail__informations-img">
     <img src="{product_photo}" alt="***">
 </div>

@@ -109,6 +109,7 @@ const selectProduct = product_element => {
         $(".sl__pdetail-box").append(new TemplateFormatter(T_product_details, {
             product_photo: data.product_photo,
             product_name: data.product_name,
+            slug: data.slug,
             brand: data.brand,
             alternative_name_1: data.alternative_name_1,
             alternative_name_2: data.alternative_name_2,
@@ -151,6 +152,7 @@ const showNumItems = () => {
 }
 
 const addToCart = (slug, name, qty=1) => {
+    if (qty < 1) return;
     // it is going to store an array of slugs
     let cart_items = JSON.parse(localStorage.getItem("shopping_cart") || "[]");
     let total_items = JSON.parse(localStorage.getItem("total_items") || 0);
@@ -161,17 +163,19 @@ const addToCart = (slug, name, qty=1) => {
     let previously_in_list = false;
     for (const item of cart_items) {
         if (item.slug == slug) {
-            item.qty++;
+            item.qty += qty;
             previously_in_list = true;
-            alert(`یک '${name}' دیگر نیز به سبد خرید شما اضافه گشت`)
-            break;
+            if (qty == 1)
+                alert(`یک '${name}' دیگر نیز به سبد خرید شما اضافه گشت`);
+            else
+                alert(`${qty} تا ${name} دیگر نیز به سبد خرید شما اضافه گشت`);
         }
     }
     if (!previously_in_list) {
         cart_items.push({slug, name, qty});
-        alert(`${name} به سبد خرید اضافه شد`);
+        alert(`${qty} ${name} به سبد خرید شما اضافه شد`);
     }
-    total_items++;
+    total_items += qty;
     localStorage.setItem("shopping_cart", JSON.stringify(cart_items));
     localStorage.setItem("total_items", total_items);
     showNumItems();
@@ -194,6 +198,24 @@ const highlightNavbarLink = (item_id) => {
     navlink.children(".nav__item").addClass("active");
     navlink.siblings().children(".nav__item").removeClass("active");
 };
+
+const slIncreaseQTY = () => {
+    const previous = +$('#pinput').val();
+    $('#pinput').val(previous + 1);
+}
+
+const slDecreaseQTY = () => {
+    const previous = +$('#pinput').val();
+    if (previous <= 1) return;
+    $('#pinput').val(previous - 1);
+}
+
+const slAddToCard = () => {
+    const product_name = $("[data-pname]").data("pname");
+    const product_slug = $("[data-pslug]").data("pslug");
+    const qty = +$("#pinput").val();
+    addToCart(product_slug, product_name, qty);
+}
 
 $(document).ready(() => {
     $('.sl__plist-box').on('click', '.sl__plist__pcard', function(e) {
