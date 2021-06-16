@@ -11,7 +11,7 @@
                 </div>
                 <!-- an ==> Alternative name -->
                 <div class="pdetail__informations__an">
-                    <div class="pdetail__informations__an-title">{% trans 'Alternative Title' %}</div>
+                    <div class="pdetail__informations__an-title">{% trans 'alternative titles' %}</div>
                     <div class="pdetail__informations__an-description">
                         {% if product.alternative_name_1 %}
                         {{ product.alternative_name_1 }}
@@ -42,7 +42,7 @@
             <div class="pdetail__controller-box">
                 <!-- bc ==> Bread Crumb -->
                 <div class="pdetail__controller__bc">
-                    <a href="{% url 'categories' %}" class="pdetail__controller__bc-item">{% trans 'Category' %}</a>
+                    <a href="{% url 'categories' %}" class="pdetail__controller__bc-item">{% trans 'categories' %}</a>
                     <a href="#" class="pdetail__controller__bc-item">{{ product.brand }}</a>
                     {% for category in product.all_categories %}
                     <a href="#" class="pdetail__controller__bc-item">{{ category }}</a>
@@ -55,15 +55,15 @@
                 <div class="pdetail__controller__btns">
                     <div class="d-flex">
                         <div class="w-50">
-                            <button class="btn-red-fill" onclick="addToCart('{{ product.slug }}', '{{ product.product_name }}')">{% trans 'افزودن به کالای پروژه' %}</button>
+                            <button class="btn-red-fill" onclick="addToCart('{{ product.slug }}', '{{ product.product_name }}')">{% trans 'add to list' %}</button>
                         </div>
                         <div class="w-50">
-                            <button class="btn-red-border" id="pnumber">{% trans 'کالا های انتخابی شما (۰)' %}</button>
+                            <button class="btn-red-border" id="pnumber">{% trans 'total chosen products (۰)' %}</button>
                         </div>
                     </div>
                     <div class="w-100">
                     {% if product.tech_spec %}
-                        <a href="{{ product.tech_spec.url }}" class="btn-green-fill">{% trans 'دانلود فایل مشخصات پروژه' %}</a>
+                        <a href="{{ product.tech_spec.url }}" class="btn-green-fill">{% trans 'download the specification file' %}</a>
                     {% endif %}
                     </div>
                 </div>
@@ -80,13 +80,13 @@
                         <div class="guarantees__list__item-img">
                             <img src="{% static 'img/customer-review.png' %}" alt="">
                         </div>
-                        <div class="guarantees__list__item-text">{% trans 'بیش از ۹۰٪ رضایت' %}</div>
+                        <div class="guarantees__list__item-text">{% trans 'more than 90 percent stisfaction' %}</div>
                     </div>
                     <div class="guarantees__list__item">
                         <div class="guarantees__list__item-img">
                             <img src="{% static 'img/package.png' %}" alt="">
                         </div>
-                        <div class="guarantees__list__item-text">{% trans 'ضمانت اصالت کالا' %}</div>
+                        <div class="guarantees__list__item-text">{% trans 'guarantee the authenticity of products' %}</div>
                     </div>
                 </div>
                 <div class="d-flex flex-grow-1">
@@ -94,13 +94,13 @@
                         <div class="guarantees__list__item-img">
                             <img src="{% static 'img/truck.png' %}" alt="">
                         </div>
-                        <div class="guarantees__list__item-text">{% trans 'ارسال به تمام نقاط کشور' %}</div>
+                        <div class="guarantees__list__item-text">{% trans 'deliver to all parts of the country' %}</div>
                     </div>
                     <div class="guarantees__list__item">
                         <div class="guarantees__list__item-img">
                             <img src="{% static 'img/best-seller.png' %}" alt="">
                         </div>
-                        <div class="guarantees__list__item-text">{% trans 'تضمین بهترین قیمت' %}</div>
+                        <div class="guarantees__list__item-text">{% trans 'best price guarantee' %}</div>
                     </div>
                 </div>
             </div>

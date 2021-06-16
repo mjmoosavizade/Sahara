@@ -2,7 +2,7 @@
 <main>
     <!-- Category -->
     <div class="cat">
-        <div class="plist-title">{% trans 'Brands' %}</div>
+        <div class="plist-title">{% trans 'brands' %}</div>
         <div class="plist-hr"></div>
         <div class="cat-box">
             <div class="cat__brands">
@@ -27,7 +27,7 @@
                 <!-- Side Right -->
                 <div class="cat__plist-sr">
                     <div class="cat__plist__categories">
-                        <div class="cat__plist__categories-title">{% trans 'دسته بندی ها' %}</div>
+                        <div class="cat__plist__categories-title">{% trans 'categories' %}</div>
                         <div class="cat__plist__categories__list">
                         {% if categories %}
                             {% for category in categories %}
@@ -51,7 +51,7 @@
                         </div>
                     </div>
                     <div class="cat__plist__consent">
-                        <div class="cat__plist__consent-title">{% trans 'آیا از سایت ما رضایت دارید ؟' %}</div>
+                        <div class="cat__plist__consent-title">{% trans 'Are you satisfied with our services?' %}</div>
                         <form class="cat__plist__consent-box">
                             <div class="cat__plist__consent-stars">
                                 <input type="radio" name="rank_star" value="1" id="rank_star_01" hidden>
@@ -93,12 +93,12 @@
                     <!-- Sort By -->
                     <div class="cat__plist__sb">
                         <div class="scroll">
-                            <div class="cat__plist__sb-title">{% trans 'مرتب سازی بر اساس:' %}</div>
+                            <div class="cat__plist__sb-title">{% trans 'sort by' %}</div>
                             <div class="cat__plist__sb__list" data-filter-on={{ filter_on }} id="filter-list">
-                                <a href="#" class="cat__plist__sb__list-item" data-fvalue="newest">{% trans 'جدیدترین' %}</a>
-                                <a href="#" class="cat__plist__sb__list-item" data-fvalue="most-visited">{% trans 'پر بازدید ترین' %}</a>
-                                <a href="#" class="cat__plist__sb__list-item" data-fvalue="in-stock">{% trans 'موجود ها' %}</a>
-                                <a href="#" class="cat__plist__sb__list-item">{% trans 'محبوب ترین' %}</a>
+                                <a href="#" class="cat__plist__sb__list-item" data-fvalue="newest">{% trans 'newest' %}</a>
+                                <a href="#" class="cat__plist__sb__list-item" data-fvalue="most-visited">{% trans 'most visited' %}</a>
+                                <a href="#" class="cat__plist__sb__list-item" data-fvalue="in-stock">{% trans 'in stock' %}</a>
+                                <a href="#" class="cat__plist__sb__list-item">{% trans 'most favorite' %}</a>
                             </div>
                         </div>
                     </div>
@@ -106,7 +106,7 @@
                         <div class="cat__plist__information">
                             <div class="cat__plist__information-title">leitungen</div>
                             <!-- Product Number -->
-                            <div class="cat__plist__information-pnum">{{ num_products }} {% trans  'کالا جستجو شده' %}</div>
+                            <div class="cat__plist__information-pnum">{{ num_products }} {% trans  'searched products' %}</div>
                         </div>
                         <div class="cat__plist-cards">
                         {% if products %}
@@ -123,7 +123,7 @@
                                     <!-- Alternative Name List -->
                                     {% if product.alternative_name_1 or product.alternative_name_2 or product.alternative_name_3 or product.alternative_name_4  %}
                                     <div class="cat__plist__card__anl">
-                                        <div class="cat__plist__card__anl-title">{% trans 'Alternative Name' %}</div>
+                                        <div class="cat__plist__card__anl-title">{% trans 'alternative names' %}</div>
                                         {% if product.alternative_name_1 %}
                                         <div class="cat__plist__card__anl-item">{{ product.alternative_name_1 }}</div>
                                         {% endif %}
@@ -139,7 +139,7 @@
                                         <div style="margin-top: 15px;">تعداد مشاهده: {{ product.reviews_count }}</div>
                                     </div>
                                     {% endif %}
-                                    <a href="{% url 'product' product.slug %}" class="cat__plist__card-link">{% trans 'اطلاعات بیشتر' %}</a>
+                                    <a href="{% url 'product' product.slug %}" class="cat__plist__card-link">{% trans 'details' %}</a>
                                 </div>
                             </div>
                             {% endfor %}

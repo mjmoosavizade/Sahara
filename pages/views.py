@@ -4,9 +4,11 @@ from products.models import Product, Brand
 from django.http import JsonResponse
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.utils import translation
 
 
 def index(request):
+    print (translation.get_language())
     categories = Category.objects.filter(show_in_homepage=True)
     products = Product.objects.filter(show_in_homepage=True)
     sample_products = Product.objects.most_visited(10)

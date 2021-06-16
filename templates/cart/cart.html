@@ -3,16 +3,16 @@
 <main>
     <div class="cart">
         <div class="cart__tplist">
-            <div class="cart__tplist-title">{% trans 'کالا های پروژه شما' %}</div>
+            <div class="cart__tplist-title">{% trans 'bought products' %}</div>
             <div class="scroll">
                 <table class="cart__tplist-box">
                     <thead>
                         <tr>
-                            <th>{% trans 'Product' %}</th>
-                            <th>{% trans 'Description' %}</th>
-                            <th>{% trans 'Code' %}</th>
-                            <th>{% trans 'Part no.' %}</th>
-                            <th>{% trans 'QTY' %}</th>
+                            <th>{% trans 'product' %}</th>
+                            <th>{% trans 'description' %}</th>
+                            <th>{% trans 'product code' %}</th>
+                            <th>{% trans 'part no.' %}</th>
+                            <th>{% trans 'number of products' %}</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -36,7 +36,7 @@
                     <div class="cart__total__data-value">1940&nbsp;$</div>
                 </div>
             </div> {% endcomment %}
-            <h1>مجموع هزینه های قابل پرداخت</h1>
+            <h1>{% trans 'total payment costs' %}</h1>
             <div class="total_shopping">
                 <div class="headers">
                     <div>دلار</div>
@@ -53,34 +53,34 @@
         <div class="cart__form">
             <form action="{% url 'cart' %}" id="cartForm" method="POST" class="cart__form-box">
                 <div class="form-control">
-                    <input name="firstname" type="text" placeholder="{% trans 'نام' %}*">
+                    <input name="firstname" type="text" placeholder="{% trans 'first name' %}*">
                 </div>
                 <div class="form-control">
-                    <input name="lastname" type="text" placeholder="{% trans 'نام خانوادگی'  %}*">
+                    <input name="lastname" type="text" placeholder="{% trans 'sir name'  %}*">
                 </div>
                 <div class="form-control">
-                    <input name="phone" type="text" placeholder="{% trans 'شماره تماس'  %}*">
+                    <input name="phone" type="text" placeholder="{% trans 'phone number'  %}*">
                 </div>
                 <div class="form-control">
-                    <input name="email" type="email" placeholder="{% trans 'ایمیل'  %}*">
+                    <input name="email" type="email" placeholder="{% trans 'email'  %}*">
                 </div>
                 <div class="form-control">
                     <select id="provinces" name="province">
-                        <option value="null">{% trans '* استان' %}</option>
+                        <option value="null">{% trans '* province' %}</option>
                     </select>
                 </div>
                 <div class="form-control">
                     <select id="states" name="city">
-                        <option value="null">{% trans '* شهر' %}</option>
+                        <option value="null">{% trans '* city' %}</option>
                     </select>
                 </div>
                 <div class="cart__form-btns">
-                    <button type="submit" class="btn-green-fill">{% trans 'ارسال فرم خرید' %}</button>
-                    <button type="reset" class="btn-red-border" onclick="removeItemsFromCart();">{% trans 'حذف همه' %}</button>
+                    <button type="submit" class="btn-green-fill">{% trans 'submit the form' %}</button>
+                    <button type="reset" class="btn-red-border" onclick="removeItemsFromCart();">{% trans 'remove all' %}</button>
                 </div>
                 <!-- Error List -->
                 <div class="cart__form__elist">
-                    <div class="cart__form__el-item">{% trans 'با ارسال فرم خرید حداکثر تا ۲۴ ساعت از طریق پشتیبانی با شما ارتباط برقرار خواهیم کرد.' %}</div>
+                    <div class="cart__form__el-item">{% trans 'After submiting the form, we will contact you within 24 hours' %}</div>
                 </div>
             </form>
         </div>

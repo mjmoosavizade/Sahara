@@ -3,10 +3,10 @@
 <div class="main__intro">
     <div class="main__search">
         <div class="main__search-btn">
-            <button id="actionSearch">{% trans 'همه دسته بندی ها' %}</button>
+            <button id="actionSearch">{% trans 'all categories' %}</button>
         </div>
         <div class="main__search-input">
-            <input type="text" id="actionSearchInput" placeholder="{% trans 'جستوجوی محصول یا برند مورد نظر' %}">
+            <input type="text" id="actionSearchInput" placeholder="{% trans 'search products or brands' %}">
         </div>
     </div>
     <div class="main__logo">
@@ -14,7 +14,7 @@
     </div>
 </div>
 <main class="inner-container">
-    <div class="plist-title" style="margin:auto;"> دسته بندی ها </div>
+    <div class="plist-title" style="margin:auto;"> {% trans 'categories'%} </div>
     <div class="plist-hr" style="margin:auto;"></div>
 
     <div class="carousel" data-flickity='{"groupCells": true, "autoPlay": 3000}'>
@@ -26,13 +26,13 @@
                     <img src="{{ category.category_image.url }}" alt="**">
                     {% endif %}
                 </div>
-                <a href="{% url 'categories' %}?category={{ category.slug }}" class="pcard-link">{% trans 'مشاهده محصولات' %}</a>
+                <a href="{% url 'categories' %}?category={{ category.slug }}" class="pcard-link">{% trans 'see products' %}</a>
             </div>
             <div class="pcard-title dec c-red">{{ category.category_title }}</div>
         </div>
         {% endfor %}
     </div>
-    <div class="plist-title" style="margin:auto">{% trans 'برند ها' %}</div>
+    <div class="plist-title" style="margin:auto">{% trans 'brands' %}</div>
     <div class="plist-hr" style="margin:auto"></div>
     <div class="cat__brands">
         <div style="width: 100%; margin: 30px 0;" 
@@ -71,14 +71,14 @@
     </div>
     <!-- Table Product List -->
     <div class="tplist">
-        <div class="plist-title">{% trans 'بیشترین بازدید' %}</div>
+        <div class="plist-title">{% trans 'most reviewed' %}</div>
         <div class="plist-hr"></div>
         <form class="plist__search">
             <div class="plist__search-btn">
                 <button id="mvs-search-btn">جستوجو</button>
             </div>
             <div class="plist__search-input">
-                <input type="text" placeholder="{% trans 'جستوجوی محصول یا برند مورد نظر' %}" id="mvs-search-input">
+                <input type="text" placeholder="{% trans 'search products or brands' %}" id="mvs-search-input">
             </div>
         </form>
         <div class="scroll">
@@ -99,7 +99,7 @@
                         <td class="mvp-name">{{ sample_product.product_name }}</td>
                         <td>{{ sample_product.brand }}</td>
                         <td>{% if sample_product.price %}{{sample_product.currency}}{{ sample_product.price }}{% else %}-{% endif %}</td>
-                        <td><button class="add_to_cart" onclick="addToCart('{{ sample_product.slug }}', '{{ sample_product.product_name }}')">{% trans 'افزودن به سبد خرید' %}</button></td>
+                        <td><button class="add_to_cart" onclick="addToCart('{{ sample_product.slug }}', '{{ sample_product.product_name }}')">{% trans 'add to list' %}</button></td>
                     </tr>
                     {% endfor %}
                     <tr style="display: none;" id="nfound-box">
@@ -124,11 +124,11 @@
             </div>
             <!-- prf ==> Product request Form -->
             <div class="dfo__prf">
-                <a href="" class="btn-green-fill">{% trans 'فرم درخواست محصول' %}</a>
-                <span class="sentence">{% trans 'ما همیشه آماده هستیم برای درخواست های شما' %}</span>
+                <a href="" class="btn-green-fill">{% trans 'product request form' %}</a>
+                <span class="sentence">{% trans 'we are always ready to deliver your requests' %}</span>
                 <div class="dfo__prf-helper">
-                    <span>{% trans 'جهت درخواست خرید محصولات لطفا این فایل را دانلود نمایید' %}</span>
-                    <span>{% trans 'پس از دانلود و تکمیل فرم درخواست محصولات و فرم را به ایمیل ما به نشانی زیر ارسال نمایید' %}</span>
+                    <span>{% trans 'in order to send the product request please download this file' %}</span>
+                    <span>{% trans 'after filling out the form, send it to the email below' %}</span>
                 </div>
                 <div class="dfo__prf-email">orders@sahara.com</div>
             </div>
@@ -139,21 +139,21 @@
                             <img src="{% static 'img/handle-with-care.png' %}" alt="">
                         </div>
                         <div class="dfo__informations__list__item-statistics">+1000</div>
-                        <div class="dfo__informations__list__item-name">{% trans 'محصول' %}</div>
+                        <div class="dfo__informations__list__item-name">{% trans 'products' %}</div>
                     </div>
                     <div class="dfo__informations__list__item">
                         <div class="dfo__informations__list__item-img">
                             <img src="{% static 'img/growth.png' %}" alt="">
                         </div>
                         <div class="dfo__informations__list__item-statistics">+6000</div>
-                        <div class="dfo__informations__list__item-name">{% trans 'کاربر و مشتری' %}</div>
+                        <div class="dfo__informations__list__item-name">{% trans 'users and customers' %}</div>
                     </div>
                     <div class="dfo__informations__list__item">
                         <div class="dfo__informations__list__item-img">
                             <img src="{% static 'img/review.png' %}" alt="">
                         </div>
                         <div class="dfo__informations__list__item-statistics">+2500</div>
-                        <div class="dfo__informations__list__item-name">{% trans 'رضایت از خرید' %}</div>
+                        <div class="dfo__informations__list__item-name">{% trans 'satisfaction with the purchase' %}</div>
                     </div>
                 </div>
             </div>
