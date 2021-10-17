@@ -3237,17 +3237,19 @@ main .cat__plist__card {
     display: flex;
     width: 100%;
     padding: 10px;
+    height: 300px;
+    position: relative;
 }
 
 @media (min-width: 768px) {
     main .cat__plist__card {
-        width: 100%;
+        width: 50%;
     }
 }
 
 @media (min-width: 992px) {
     main .cat__plist__card {
-        width: 50%;
+        width: 33%;
     }
 }
 
@@ -3260,6 +3262,7 @@ main .cat__plist__card {
 main .cat__plist__card-box {
     display: -webkit-box;
     display: -ms-flexbox;
+    position: relative;
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -3280,7 +3283,8 @@ main .cat__plist__card-img {
 
 main .cat__plist__card-img img {
     width: 100%;
-    height: auto;
+    height: 170px;
+    object-fit: cover;
 }
 
 main .cat__plist__card-title {
@@ -3317,6 +3321,8 @@ main .cat__plist__card-link {
     display: -ms-flexbox;
     display: flex;
     width: 100%;
+    bottom: 0;
+    position: absolute;
     height: 40px;
     -webkit-box-align: center;
     -ms-flex-align: center;
@@ -3835,7 +3841,10 @@ main .cat__plist__paginator-list {
 
 .loader-dialog {
     position: absolute;
-    top: 0; right: 0; left: 0; bottom: 0;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
     background-color: white;
     display: flex;
     justify-content: center;
@@ -3890,7 +3899,7 @@ main .cat__plist__paginator-list {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color:rgb(231, 231, 231);
+    background-color: rgb(231, 231, 231);
     border-radius: 13px;
 }
 
@@ -3899,17 +3908,17 @@ main .cat__plist__paginator-list {
     grid-template-columns: repeat(3, 1fr);
     row-gap: 2rem;
     width: 60%;
-    margin: 0 20%; 
+    margin: 0 20%;
 }
 
-.total_shopping div > *:nth-child(1) {
-    color:rgb(6, 114, 42);
+.total_shopping div>*:nth-child(1) {
+    color: rgb(6, 114, 42);
 }
 
-.total_shopping div > *:nth-child(2) {
-    color:rgb(112, 114, 6);
+.total_shopping div>*:nth-child(2) {
+    color: rgb(112, 114, 6);
 }
 
-.total_shopping div > *:nth-child(3) {
-    color:rgb(6, 83, 114);
+.total_shopping div>*:nth-child(3) {
+    color: rgb(6, 83, 114);
 }

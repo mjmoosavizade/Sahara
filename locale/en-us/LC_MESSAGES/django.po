@@ -20,27 +20,27 @@ msgstr ""
 
 #: templates/cart/cart.html:6
 msgid "کالا های پروژه شما"
-msgstr ""
+msgstr "Your products"
 
 #: templates/cart/cart.html:11
-msgid "Product"
-msgstr ""
+msgid "محصول"
+msgstr "Product"
 
 #: templates/cart/cart.html:12
-msgid "Description"
-msgstr ""
+msgid "توضیحات"
+msgstr "Description"
 
 #: templates/cart/cart.html:13
-msgid "Code"
-msgstr ""
+msgid "شماره"
+msgstr "Code"
 
 #: templates/cart/cart.html:14
-msgid "Part no."
-msgstr ""
+msgid "شماره فنی"
+msgstr "Part no."
 
 #: templates/cart/cart.html:15
-msgid "QTY"
-msgstr ""
+msgid "تعداد"
+msgstr "QTY"
 
 #: templates/cart/cart.html:70
 msgid "نام"
@@ -48,29 +48,29 @@ msgstr "Name"
 
 #: templates/cart/cart.html:73
 msgid "نام خانوادگی"
-msgstr ""
+msgstr "last name"
 
 #: templates/cart/cart.html:76
 msgid "شماره تماس"
-msgstr ""
+msgstr "Phone number"
 
 #: templates/cart/cart.html:79
 msgid "ایمیل"
-msgstr ""
+msgstr "email"
 
 #: templates/cart/cart.html:92
 msgid "ارسال فرم خرید"
-msgstr ""
+msgstr "Request quotation"
 
 #: templates/cart/cart.html:93
 msgid "حذف همه"
-msgstr ""
+msgstr "Delete all"
 
 #: templates/cart/cart.html:97
 msgid ""
 "با ارسال فرم خرید حداکثر تا ۲۴ ساعت از طریق پشتیبانی با شما ارتباط برقرار "
 "خواهیم کرد."
-msgstr ""
+msgstr "We'll contact you in less than 24 houres"
 
 #: templates/pages/index.html:6
 msgid "همه دسته بندی ها"
@@ -78,7 +78,7 @@ msgstr "All categories"
 
 #: templates/pages/index.html:61
 msgid "بیشترین بازدید"
-msgstr ""
+msgstr "Most viewd"
 
 #: venv/lib/python3.8/site-packages/django/contrib/messages/apps.py:7
 msgid "Messages"
